@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[HotelRoom]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[Size] TINYINT NOT NULL,
+	[Type] TINYINT NOT NULL,
+)
