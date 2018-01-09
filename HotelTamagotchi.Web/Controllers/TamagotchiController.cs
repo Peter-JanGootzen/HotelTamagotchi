@@ -14,19 +14,16 @@ namespace HotelTamagotchi.Web.Controllers
     public class TamagotchiController : Controller
     {
         private IRepository<Tamagotchi> TamagotchiRepo;
-        private IRepository<HotelRoom> HotelRoomRepo;
 
-        public TamagotchiController(IRepository<Tamagotchi> tamagotchiRepository, IRepository<HotelRoom> hotelRoomRepository) : base()
+        public TamagotchiController(IRepository<Tamagotchi> tamagotchiRepository) : base()
         {
             TamagotchiRepo = tamagotchiRepository;
-            HotelRoomRepo = hotelRoomRepository;
         }
 
         // We need this costructor for something, we not know for what tough.....
         public TamagotchiController()
         {
             TamagotchiRepo = new TamagotchiRepository();
-            HotelRoomRepo = new HotelRoomRepository();
         }
 
         // GET: Tamagotchi
@@ -53,7 +50,6 @@ namespace HotelTamagotchi.Web.Controllers
         // GET: Tamagotchi/Create
         public ActionResult Create()
         {
-            ViewBag.HotelRoomId = new SelectList(HotelRoomRepo.GetAll(), "Id", "Id");
             return View();
         }
 
@@ -75,7 +71,6 @@ namespace HotelTamagotchi.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.HotelRoomId = new SelectList(HotelRoomRepo.GetAll(), "Id", "Id", tamagotchi.HotelRoomId);
             return View(tamagotchi);
         }
 
@@ -91,7 +86,6 @@ namespace HotelTamagotchi.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.HotelRoomId = new SelectList(HotelRoomRepo.GetAll(), "Id", "Id", tamagotchi.HotelRoomId);
             return View(tamagotchi);
         }
 
@@ -107,7 +101,6 @@ namespace HotelTamagotchi.Web.Controllers
                 TamagotchiRepo.SetChanged(tamagotchi);
                 return RedirectToAction("Index");
             }
-            ViewBag.HotelRoomId = new SelectList(HotelRoomRepo.GetAll(), "Id", "Id", tamagotchi.HotelRoomId);
             return View(tamagotchi);
         }
 
