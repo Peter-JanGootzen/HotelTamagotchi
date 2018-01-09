@@ -7,18 +7,32 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HotelTamagotchi.Web.Models;
+using HotelTamagotchi.Web.Repositories;
 
 namespace HotelTamagotchi.Web.Controllers
 {
     public class TamagotchiController : Controller
     {
-        private HotelTamagotchiEntities db = new HotelTamagotchiEntities();
+        private IRepository<Tamagotchi> TamagotchiRepo;
+        private IRepository<HotelRoom> HotelRoomRepo;
+
+        public TamagotchiController(IRepository<Tamagotchi> tamagotchiRepository, IRepository<HotelRoom> hotelRoomRepository) : base()
+        {
+            TamagotchiRepo = tamagotchiRepository;
+            HotelRoomRepo = hotelRoomRepository;
+        }
+
+        // We need this costructor for something, we not know for what tough.....
+        public TamagotchiController()
+        {
+            TamagotchiRepo = new TamagotchiRepository();
+            HotelRoomRepo = new HotelRoomRepository();
+        }
 
         // GET: Tamagotchi
         public ActionResult Index()
         {
-            var tamagotchis = db.Tamagotchi.Include(t => t.HotelRoom);
-            return View(tamagotchis.ToList());
+            return View(TamagotchiRepo.GetAll());
         }
 
         // GET: Tamagotchi/Details/5
@@ -28,7 +42,7 @@ namespace HotelTamagotchi.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tamagotchi tamagotchi = db.Tamagotchi.Find(id);
+            Tamagotchi tamagotchi = TamagotchiRepo.Find(id);
             if (tamagotchi == null)
             {
                 return HttpNotFound();
@@ -39,7 +53,7 @@ namespace HotelTamagotchi.Web.Controllers
         // GET: Tamagotchi/Create
         public ActionResult Create()
         {
-            ViewBag.HotelRoomId = new SelectList(db.HotelRoom, "Id", "Id");
+            ViewBag.HotelRoomId = new SelectList(HotelRoomRepo.GetAll(), "Id", "Id");
             return View();
         }
 
@@ -57,12 +71,11 @@ namespace HotelTamagotchi.Web.Controllers
                 tamagotchi.Health = 100;
                 tamagotchi.Level = 0;
                 tamagotchi.Pennies = 100;
-                db.Tamagotchi.Add(tamagotchi);
-                db.SaveChanges();
+                TamagotchiRepo.Add(tamagotchi);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.HotelRoomId = new SelectList(db.HotelRoom, "Id", "Id", tamagotchi.HotelRoomId);
+            ViewBag.HotelRoomId = new SelectList(HotelRoomRepo.GetAll(), "Id", "Id", tamagotchi.HotelRoomId);
             return View(tamagotchi);
         }
 
@@ -73,12 +86,12 @@ namespace HotelTamagotchi.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tamagotchi tamagotchi = db.Tamagotchi.Find(id);
+            Tamagotchi tamagotchi = TamagotchiRepo.Find(id);
             if (tamagotchi == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.HotelRoomId = new SelectList(db.HotelRoom, "Id", "Id", tamagotchi.HotelRoomId);
+            ViewBag.HotelRoomId = new SelectList(HotelRoomRepo.GetAll(), "Id", "Id", tamagotchi.HotelRoomId);
             return View(tamagotchi);
         }
 
@@ -91,11 +104,10 @@ namespace HotelTamagotchi.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tamagotchi).State = EntityState.Modified;
-                db.SaveChanges();
+                TamagotchiRepo.SetChanged(tamagotchi);
                 return RedirectToAction("Index");
             }
-            ViewBag.HotelRoomId = new SelectList(db.HotelRoom, "Id", "Id", tamagotchi.HotelRoomId);
+            ViewBag.HotelRoomId = new SelectList(HotelRoomRepo.GetAll(), "Id", "Id", tamagotchi.HotelRoomId);
             return View(tamagotchi);
         }
 
@@ -106,7 +118,7 @@ namespace HotelTamagotchi.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tamagotchi tamagotchi = db.Tamagotchi.Find(id);
+            Tamagotchi tamagotchi = TamagotchiRepo.Find(id);
             if (tamagotchi == null)
             {
                 return HttpNotFound();
@@ -119,9 +131,8 @@ namespace HotelTamagotchi.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Tamagotchi tamagotchi = db.Tamagotchi.Find(id);
-            db.Tamagotchi.Remove(tamagotchi);
-            db.SaveChanges();
+            Tamagotchi tamagotchi = TamagotchiRepo.Find(id);
+            TamagotchiRepo.Remove(tamagotchi);
             return RedirectToAction("Index");
         }
 
@@ -129,7 +140,7 @@ namespace HotelTamagotchi.Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                TamagotchiRepo.Dispose();
             }
             base.Dispose(disposing);
         }
