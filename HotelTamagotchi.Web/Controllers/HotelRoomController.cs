@@ -49,6 +49,13 @@ namespace HotelTamagotchi.Web.Controllers
         // GET: HotelRoom/Create
         public ActionResult Create()
         {
+            var sizes = new List<int>
+            {
+                2,
+                3,
+                5
+            };
+            ViewBag.SelectList = new SelectList(sizes);
             return View();
         }
 
@@ -80,6 +87,14 @@ namespace HotelTamagotchi.Web.Controllers
             {
                 return HttpNotFound();
             }
+
+            var sizes = new List<int>
+            {
+                2,
+                3,
+                5
+            };
+            ViewBag.SelectList = new SelectList(sizes);
             return View(hotelRoom);
         }
 
