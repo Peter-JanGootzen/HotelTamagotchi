@@ -206,6 +206,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HotelRoomController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TamagotchiController.cs" />
     <Compile Include="Global.asax.cs">
@@ -285,6 +286,11 @@
     <Content Include="Views\Tamagotchi\Details.cshtml" />
     <Content Include="Views\Tamagotchi\Edit.cshtml" />
     <Content Include="Views\Tamagotchi\Index.cshtml" />
+    <Content Include="Views\HotelRoom\Create.cshtml" />
+    <Content Include="Views\HotelRoom\Delete.cshtml" />
+    <Content Include="Views\HotelRoom\Details.cshtml" />
+    <Content Include="Views\HotelRoom\Edit.cshtml" />
+    <Content Include="Views\HotelRoom\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

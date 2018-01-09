@@ -11,121 +11,130 @@ using HotelTamagotchi.Web.Repositories;
 
 namespace HotelTamagotchi.Web.Controllers
 {
-    public class TamagotchiController : Controller
+    public class HotelRoomController : Controller
     {
-        private IRepository<Tamagotchi> TamagotchiRepo;
+        private IRepository<HotelRoom> HotelRoomRepo;
 
-        public TamagotchiController(IRepository<Tamagotchi> tamagotchiRepository) : base()
+        public HotelRoomController(IRepository<HotelRoom> hotelRoomRepository)
         {
-            TamagotchiRepo = tamagotchiRepository;
+            HotelRoomRepo = hotelRoomRepository;
         }
 
-        // We need this costructor for something, we not know for what tough.....
-        public TamagotchiController()
+        public HotelRoomController()
         {
-            TamagotchiRepo = new TamagotchiRepository();
+            HotelRoomRepo = new HotelRoomRepository();
         }
 
-        // GET: Tamagotchi
+        // GET: HotelRoom
         public ActionResult Index()
         {
-            return View(TamagotchiRepo.GetAll());
+            return View(HotelRoomRepo.GetAll());
         }
 
-        // GET: Tamagotchi/Details/5
+        // GET: HotelRoom/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tamagotchi tamagotchi = TamagotchiRepo.Find(id);
-            if (tamagotchi == null)
+            HotelRoom hotelRoom = HotelRoomRepo.Find(id);
+            if (hotelRoom == null)
             {
                 return HttpNotFound();
             }
-            return View(tamagotchi);
+            return View(hotelRoom);
         }
 
-        // GET: Tamagotchi/Create
+        // GET: HotelRoom/Create
         public ActionResult Create()
         {
+            var sizes = new List<int>
+            {
+                2,
+                3,
+                5
+            };
+            ViewBag.SelectList = new SelectList(sizes);
             return View();
         }
 
-        // POST: Tamagotchi/Create
+        // POST: HotelRoom/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,HotelRoomId,Name,Age,Pennies,Level,Health,Boredom,Alive")] Tamagotchi tamagotchi)
+        public ActionResult Create([Bind(Include = "Id,Size,Type")] HotelRoom hotelRoom)
         {
             if (ModelState.IsValid)
             {
-                tamagotchi.Age = 0;
-                tamagotchi.Boredom = 0;
-                tamagotchi.Health = 100;
-                tamagotchi.Level = 0;
-                tamagotchi.Pennies = 100;
-                TamagotchiRepo.Add(tamagotchi);
+                HotelRoomRepo.Add(hotelRoom);
                 return RedirectToAction("Index");
             }
 
-            return View(tamagotchi);
+            return View(hotelRoom);
         }
 
-        // GET: Tamagotchi/Edit/5
+        // GET: HotelRoom/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tamagotchi tamagotchi = TamagotchiRepo.Find(id);
-            if (tamagotchi == null)
+            HotelRoom hotelRoom = HotelRoomRepo.Find(id);
+            if (hotelRoom == null)
             {
                 return HttpNotFound();
             }
-            return View(tamagotchi);
+
+            var sizes = new List<int>
+            {
+                2,
+                3,
+                5
+            };
+            ViewBag.SelectList = new SelectList(sizes);
+            return View(hotelRoom);
         }
 
-        // POST: Tamagotchi/Edit/5
+        // POST: HotelRoom/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,HotelRoomId,Name,Age,Pennies,Level,Health,Boredom,Alive")] Tamagotchi tamagotchi)
+        public ActionResult Edit([Bind(Include = "Id,Size,Type")] HotelRoom hotelRoom)
         {
             if (ModelState.IsValid)
             {
-                TamagotchiRepo.SetChanged(tamagotchi);
+                HotelRoomRepo.SetChanged(hotelRoom);
                 return RedirectToAction("Index");
             }
-            return View(tamagotchi);
+            return View(hotelRoom);
         }
 
-        // GET: Tamagotchi/Delete/5
+        // GET: HotelRoom/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tamagotchi tamagotchi = TamagotchiRepo.Find(id);
-            if (tamagotchi == null)
+            HotelRoom hotelRoom = HotelRoomRepo.Find(id);
+            if (hotelRoom == null)
             {
                 return HttpNotFound();
             }
-            return View(tamagotchi);
+            return View(hotelRoom);
         }
 
-        // POST: Tamagotchi/Delete/5
+        // POST: HotelRoom/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Tamagotchi tamagotchi = TamagotchiRepo.Find(id);
-            TamagotchiRepo.Remove(tamagotchi);
+            HotelRoom hotelRoom = HotelRoomRepo.Find(id);
+            HotelRoomRepo.Remove(hotelRoom);
             return RedirectToAction("Index");
         }
 
@@ -133,7 +142,7 @@ namespace HotelTamagotchi.Web.Controllers
         {
             if (disposing)
             {
-                TamagotchiRepo.Dispose();
+                HotelRoomRepo.Dispose();
             }
             base.Dispose(disposing);
         }
