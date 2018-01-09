@@ -26,9 +26,10 @@ namespace HotelTamagotchi.Web.Models
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var errors = new List<ValidationResult>();
+            List<ValidationResult> errors = new List<ValidationResult>();
             var size = new[] { "Size" };
             var type = new[] { "Type" };
+
             if(Size != HotelRoomSize.Bigroom & Size != HotelRoomSize.Mediumroom & Size != HotelRoomSize.Smallroom)
             {
                 errors.Add(new ValidationResult("De grootte van een kamer moet een grote, medium of kleine kamer zijn!", size));
