@@ -13,18 +13,14 @@ namespace HotelTamagotchi.Web.Controllers
 {
     public class TamagotchiController : Controller
     {
-        private IRepository<Tamagotchi> TamagotchiRepo;
+        private ITamagotchiRepository TamagotchiRepo;
 
-        public TamagotchiController(IRepository<Tamagotchi> tamagotchiRepository) : base()
+        public TamagotchiController(ITamagotchiRepository tamagotchiRepository) : base()
         {
             TamagotchiRepo = tamagotchiRepository;
         }
 
         // We need this costructor for something, we not know for what tough.....
-        public TamagotchiController()
-        {
-            TamagotchiRepo = new TamagotchiRepository();
-        }
 
         // GET: Tamagotchi
         public ActionResult Index()

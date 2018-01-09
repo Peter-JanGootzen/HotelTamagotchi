@@ -6,13 +6,13 @@ using System.Web;
 
 namespace HotelTamagotchi.Web.Repositories
 {
-    public class HotelRoomRepository : IRepository<HotelRoom>
+    public class HotelRoomRepository : IHotelRoomRepository
     {
         HotelTamagotchiEntities _database;
 
-        public HotelRoomRepository()
+        public HotelRoomRepository(HotelTamagotchiEntities database)
         {
-            _database = new HotelTamagotchiEntities();
+            _database = database;
         }
 
         public void Add(HotelRoom entity)

@@ -35,7 +35,7 @@ namespace HotelTamagotchi.Test.Controllers
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.AreEqual("Programmeren 6 assessment by Bram-Boris Meerlo and Peter-Jan Gootzen", result.ViewBag.Message);
         }
     }
 }

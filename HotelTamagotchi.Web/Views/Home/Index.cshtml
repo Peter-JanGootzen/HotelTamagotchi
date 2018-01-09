@@ -4,11 +4,11 @@
 
 <div class="jumbotron">
     <h1>HotelTamagotchi</h1>
-    <p class="lead">Programmeren 6 assessment by Bram-Boris Meerlo and Peter-Jan Gootzen</p>
+    <p class="lead"></p>
 </div>
 
 <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <h2>Tamagotchi</h2>
             <p>
                 Create, update, edit and delete Tamagotchi!<br />
@@ -16,9 +16,15 @@
             </p>
             <div class="btn btn-default">@Html.ActionLink("Manage Tamagotchi", "Index", "Tamagotchi")</div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
+            <h2>Bookings</h2>
+            <p>Book a room for your Tamagotchi!</p>
+            <div class="btn btn-default">@Html.ActionLink("Book a Hotelroom", "Index", "Booking")</div>
+        </div>
+        <div class="col-md-4">
            <h2>Hotelrooms</h2>
            <p>Create, update, edit and delete Hotelrooms!</p>
            <div class="btn btn-default">@Html.ActionLink("Manage Hotelrooms", "Index", "Hotelroom")</div>
         </div>
+        
 </div>

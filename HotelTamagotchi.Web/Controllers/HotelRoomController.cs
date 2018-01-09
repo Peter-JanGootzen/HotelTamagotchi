@@ -13,16 +13,11 @@ namespace HotelTamagotchi.Web.Controllers
 {
     public class HotelRoomController : Controller
     {
-        private IRepository<HotelRoom> HotelRoomRepo;
+        private IHotelRoomRepository HotelRoomRepo;
 
-        public HotelRoomController(IRepository<HotelRoom> hotelRoomRepository)
+        public HotelRoomController(IHotelRoomRepository hotelRoomRepository)
         {
             HotelRoomRepo = hotelRoomRepository;
-        }
-
-        public HotelRoomController()
-        {
-            HotelRoomRepo = new HotelRoomRepository();
         }
 
         // GET: HotelRoom
