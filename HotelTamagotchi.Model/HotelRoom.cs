@@ -22,7 +22,7 @@ namespace HotelTamagotchi.Model
     
         public int Id { get; set; }
         public byte Size { get; set; }
-        public byte Type { get; set; }
+        public HotelRoomType Type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tamagotchi> Tamagotchis { get; set; }

@@ -57,7 +57,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Size" Type="Byte" Nullable="false" />
-          <Property Name="Type" Type="Byte" Nullable="false" />
+          <Property Name="Type" Type="HotelTamagotchi.Model.HotelRoomType" Nullable="false" />
           <NavigationProperty Name="Tamagotchis" Relationship="Self.FK_Tamagotchi_HotelRoomId" FromRole="HotelRoom" ToRole="Tamagotchi" />
         </EntityType>
         <EntityType Name="Tamagotchi">
@@ -94,6 +94,12 @@
             <End Role="Tamagotchi" EntitySet="Tamagotchis" />
           </AssociationSet>
         </EntityContainer>
+        <EnumType Name="HotelRoomType" UnderlyingType="Byte">
+          <Member Name="Restroom" Value="0" />
+          <Member Name="Gameroom" Value="1" />
+          <Member Name="Workroom" Value="2" />
+          <Member Name="Fightroom" Value="3" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
