@@ -25,8 +25,8 @@ INSERT dbo.Tamagotchi
 INSERT dbo.Tamagotchi
 		(HotelRoomId, Name, Age, Pennies, Level, Health, Boredom, Alive)
 	VALUES
-		(4, 'Severus', 0, 100, 0, 100, 0, 1)
+		(4, 'Severus', 0, 100, 0, 100, 0, 0)
 INSERT dbo.Tamagotchi
 		(HotelRoomId, Name, Age, Pennies, Level, Health, Boredom, Alive)
 	VALUES
-		(4, 'Tom', 0, 100, 0, 100, 0, 15)
+		(4, 'Tom', 0, 100, 0, 100, 0, 0)
