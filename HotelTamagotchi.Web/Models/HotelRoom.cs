@@ -12,17 +12,19 @@ namespace HotelTamagotchi.Web.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Tamagotchi
+    public partial class HotelRoom
     {
-        public int Id { get; set; }
-        public Nullable<int> HotelRoomId { get; set; }
-        public string Name { get; set; }
-        public int Pennies { get; set; }
-        public int Level { get; set; }
-        public byte Health { get; set; }
-        public byte Boredom { get; set; }
-        public byte Alive { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public HotelRoom()
+        {
+            this.Tamagotchi = new HashSet<Tamagotchi>();
+        }
     
-        public virtual HotelRoom HotelRoom { get; set; }
+        public int Id { get; set; }
+        public byte Size { get; set; }
+        public HotelRoomType Type { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tamagotchi> Tamagotchi { get; set; }
     }
 }

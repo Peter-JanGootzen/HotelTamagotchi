@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HotelTamagotchi.Web.Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HotelRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Size" Type="tinyint" Nullable="false" />
+          <Property Name="Type" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tamagotchi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelRoomId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Pennies" Type="int" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Health" Type="tinyint" Nullable="false" />
+          <Property Name="Boredom" Type="tinyint" Nullable="false" />
+          <Property Name="Alive" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Tamagotchi_HotelRoomId">
+          <End Role="HotelRoom" Type="Self.HotelRoom" Multiplicity="0..1" />
+          <End Role="Tamagotchi" Type="Self.Tamagotchi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tamagotchi">
+              <PropertyRef Name="HotelRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HotelTamagotchiWebModelsStoreContainer">
+          <EntitySet Name="HotelRoom" EntityType="Self.HotelRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tamagotchi" EntityType="Self.Tamagotchi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tamagotchi_HotelRoomId" Association="Self.FK_Tamagotchi_HotelRoomId">
+            <End Role="HotelRoom" EntitySet="HotelRoom" />
+            <End Role="Tamagotchi" EntitySet="Tamagotchi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HotelTamagotchi.Web.Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HotelRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Size" Type="Byte" Nullable="false" />
+          <Property Name="Type" Type="HotelTamagotchi.Web.Models.HotelRoomType" Nullable="false" />
+          <NavigationProperty Name="Tamagotchi" Relationship="Self.FK_Tamagotchi_HotelRoomId" FromRole="HotelRoom" ToRole="Tamagotchi" />
+        </EntityType>
+        <EntityType Name="Tamagotchi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelRoomId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pennies" Type="Int32" Nullable="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Health" Type="Byte" Nullable="false" />
+          <Property Name="Boredom" Type="Byte" Nullable="false" />
+          <Property Name="Alive" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="HotelRoom" Relationship="Self.FK_Tamagotchi_HotelRoomId" FromRole="Tamagotchi" ToRole="HotelRoom" />
+        </EntityType>
+        <Association Name="FK_Tamagotchi_HotelRoomId">
+          <End Role="HotelRoom" Type="Self.HotelRoom" Multiplicity="0..1" />
+          <End Role="Tamagotchi" Type="Self.Tamagotchi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tamagotchi">
+              <PropertyRef Name="HotelRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HotelTamagotchiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HotelRoom" EntityType="Self.HotelRoom" />
+          <EntitySet Name="Tamagotchi" EntityType="Self.Tamagotchi" />
+          <AssociationSet Name="FK_Tamagotchi_HotelRoomId" Association="Self.FK_Tamagotchi_HotelRoomId">
+            <End Role="HotelRoom" EntitySet="HotelRoom" />
+            <End Role="Tamagotchi" EntitySet="Tamagotchi" />
+          </AssociationSet>
+        </EntityContainer>
+        <EnumType Name="HotelRoomType" UnderlyingType="Byte">
+          <Member Name="Restroom" Value="0" />
+          <Member Name="Gameroom" Value="1" />
+          <Member Name="Workroom" Value="2" />
+          <Member Name="Fightroom" Value="3" />
+        </EnumType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HotelTamagotchiWebModelsStoreContainer" CdmEntityContainer="HotelTamagotchiEntities">
+          <EntitySetMapping Name="HotelRoom">
+            <EntityTypeMapping TypeName="HotelTamagotchi.Web.Models.HotelRoom">
+              <MappingFragment StoreEntitySet="HotelRoom">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tamagotchi">
+            <EntityTypeMapping TypeName="HotelTamagotchi.Web.Models.Tamagotchi">
+              <MappingFragment StoreEntitySet="Tamagotchi">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HotelRoomId" ColumnName="HotelRoomId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Pennies" ColumnName="Pennies" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Health" ColumnName="Health" />
+                <ScalarProperty Name="Boredom" ColumnName="Boredom" />
+                <ScalarProperty Name="Alive" ColumnName="Alive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
