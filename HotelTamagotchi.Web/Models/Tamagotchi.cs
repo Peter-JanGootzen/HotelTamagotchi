@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public partial class Tamagotchi
+    public class Tamagotchi
     {
         public int Id { get; set; }
         public Nullable<int> HotelRoomId { get; set; }

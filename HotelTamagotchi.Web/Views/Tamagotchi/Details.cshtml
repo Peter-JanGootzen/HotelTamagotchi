@@ -1,0 +1,74 @@
+﻿@model HotelTamagotchi.Web.Models.Tamagotchi
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tamagotchi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HotelRoom.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HotelRoom.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pennies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pennies)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Level)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Health)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Health)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Boredom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Boredom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Alive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alive)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
