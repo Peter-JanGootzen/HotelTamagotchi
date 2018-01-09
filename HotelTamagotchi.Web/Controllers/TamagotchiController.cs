@@ -48,7 +48,7 @@ namespace HotelTamagotchi.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,HotelRoomId,Name,Pennies,Level,Health,Boredom,Alive")] Tamagotchi tamagotchi)
+        public ActionResult Create([Bind(Include = "Id,HotelRoomId,Name,Age,Pennies,Level,Health,Boredom,Alive")] Tamagotchi tamagotchi)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace HotelTamagotchi.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,HotelRoomId,Name,Pennies,Level,Health,Boredom,Alive")] Tamagotchi tamagotchi)
+        public ActionResult Edit([Bind(Include = "Id,HotelRoomId,Name,Age,Pennies,Level,Health,Boredom,Alive")] Tamagotchi tamagotchi)
         {
             if (ModelState.IsValid)
             {
