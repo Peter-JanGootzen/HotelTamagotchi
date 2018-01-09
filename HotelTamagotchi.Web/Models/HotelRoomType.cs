@@ -1,4 +1,4 @@
-﻿namespace HotelTamagotchi.Model
+﻿namespace HotelTamagotchi.Web.Models
 {
     public enum HotelRoomType : byte
     {

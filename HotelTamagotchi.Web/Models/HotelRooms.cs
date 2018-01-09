@@ -1,4 +1,4 @@
-﻿namespace HotelTamagotchi.Web
+﻿namespace HotelTamagotchi.Web.Models
 {
     using System;
     using System.Collections.Generic;
