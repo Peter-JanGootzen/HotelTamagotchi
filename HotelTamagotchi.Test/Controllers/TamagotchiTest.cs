@@ -48,7 +48,7 @@ namespace HotelTamagotchi.Test.Controllers
             // Act
             var errors = t.Validate(null);
             //Assert
-            Assert.AreEqual(new List<ValidationResult>().Count,errors.Count());
+            Assert.AreEqual(0,errors.Count());
 
         }
 

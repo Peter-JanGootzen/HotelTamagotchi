@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HotelRoom.cs" />
+    <Compile Include="Models\HotelRoomSize.cs" />
     <Compile Include="Models\HotelRoomType.cs" />
     <Compile Include="Models\HotelTamagotchiEntities.cs" />
     <Compile Include="Models\IdentityModels.cs" />
