@@ -223,6 +223,8 @@
     <Compile Include="Repositories\ITamagotchiRepository.cs" />
     <Compile Include="Repositories\TamagotchiRepository.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\HotelRoomViewModel.cs" />
+    <Compile Include="ViewModels\TamagotchiViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

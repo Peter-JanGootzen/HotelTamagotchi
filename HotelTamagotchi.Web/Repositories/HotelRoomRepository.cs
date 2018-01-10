@@ -1,4 +1,5 @@
 ﻿using HotelTamagotchi.Web.Models;
+using HotelTamagotchi.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,9 @@ namespace HotelTamagotchi.Web.Repositories
             _database = database;
         }
 
-        public void Add(HotelRoom entity)
+        public void Add(HotelRoomViewModel entity)
         {
-            _database.HotelRoom.Add(entity);
+            _database.HotelRoom.Add(entity.ToModel());
             _database.SaveChanges();
         }
 
