@@ -22,6 +22,13 @@ namespace HotelTamagotchi.Web.ViewModels
             _model = new HotelRoom();
         }
 
+        #region Properties
+        public int Id
+        {
+            get => _model.Id;
+            set => _model.Id = value;
+        }
+
         public HotelRoomSize Size
         {
             get => _model.Size;
@@ -39,6 +46,22 @@ namespace HotelTamagotchi.Web.ViewModels
             get => _model.Tamagotchi.Count == 0;
             private set { }
         }
+
+        public List<TamagotchiViewModel> Tamagotchi
+        {
+            get
+            {
+                List<TamagotchiViewModel> list = new List<TamagotchiViewModel>();
+                foreach(Tamagotchi t in _model.Tamagotchi)
+                {
+                    list.Add(new TamagotchiViewModel(t));
+                }
+                return list;
+            }
+        }
+
+      
+        #endregion
 
         public void AddTamagotchi(Tamagotchi tamagotchi)
         {

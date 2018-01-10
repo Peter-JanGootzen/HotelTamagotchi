@@ -16,7 +16,66 @@ namespace HotelTamagotchi.Web.ViewModels
             _model = new Tamagotchi();
         }
 
-        // TODO properties
+        public TamagotchiViewModel(Tamagotchi tamagotchi)
+        {
+            _model = tamagotchi;
+        }
+
+
+        #region Properties
+        public String Name
+        {
+            get => _model.Name;
+            set => _model.Name = value;
+        }
+
+        public int Id
+        {
+            get => _model.Id;
+            set => _model.Id = value;
+        }
+        public int? HotelRoomId
+        {
+            get => _model.HotelRoomId;
+            set => _model.HotelRoomId = value;
+        }
+        public int Pennies
+        {
+            get => _model.Pennies;
+            set => _model.Pennies = value;
+        }
+        public int Age
+        {
+            get => _model.Age;
+            set => _model.Age = value;
+        }
+        public int Level
+        {
+            get => _model.Level;
+            set => _model.Level = value;
+        }
+        public byte Health
+        {
+            get => _model.Health;
+            set => _model.Health = value;
+        }
+        public byte Boredom
+        {
+            get => _model.Boredom;
+            set => _model.Boredom = value;
+        }
+        public bool Alive
+        {
+            get => _model.Alive;
+            set => _model.Alive = value;
+        }
+
+        public HotelRoom HotelRoom
+        {
+            get => _model.HotelRoom;
+            set => _model.HotelRoom = value;
+        }
+#endregion
 
         public void SleepOutside()
         {
@@ -31,6 +90,11 @@ namespace HotelTamagotchi.Web.ViewModels
                 else
                     _model.Boredom = 10;
             }
+        }
+
+        public Tamagotchi ToModel()
+        {
+            return _model;
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
