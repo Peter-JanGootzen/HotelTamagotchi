@@ -43,7 +43,7 @@ namespace HotelTamagotchi.Web.ViewModels
 
         public bool IsBooked
         {
-            get => _model.Tamagotchi.Count == 0;
+            get => _model.Tamagotchi.Count != 0;
             private set { }
         }
 

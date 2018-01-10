@@ -1,0 +1,46 @@
+﻿@model IEnumerable<HotelTamagotchi.Web.ViewModels.HotelRoomViewModel>
+@{
+    ViewBag.Title = "Booking";
+}
+
+<h2>Booking</h2>
+<table class="table">
+    <tr>
+        <th>
+            HotelRoom
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            Boeken
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @if (!item.IsBooked)
+                {
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Booking", new { id = item.Id })'">Boek nu!</button>
+                }
+            </td>
+        </tr>
+    }
+    </table>
+

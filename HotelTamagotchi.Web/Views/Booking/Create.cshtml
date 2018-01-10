@@ -1,0 +1,15 @@
+﻿@model Tuple<HotelTamagotchi.Web.ViewModels.HotelRoomViewModel, IList<HotelTamagotchi.Web.ViewModels.TamagotchiViewModel>>
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Boeking voor Hotelkamer nummer:  @Model.Item1.Id</h2>
+
+@using (Html.BeginForm("Create", "BookingController", FormMethod.Post))
+{
+
+}
+    
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

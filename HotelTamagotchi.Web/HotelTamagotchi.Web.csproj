@@ -205,6 +205,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelRoomController.cs" />
     <Compile Include="Controllers\TamagotchiController.cs" />
@@ -292,6 +293,8 @@
     <Content Include="Views\HotelRoom\Details.cshtml" />
     <Content Include="Views\HotelRoom\Edit.cshtml" />
     <Content Include="Views\HotelRoom\Index.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\Booking\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
