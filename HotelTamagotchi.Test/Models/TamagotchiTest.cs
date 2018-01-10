@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelTamagotchi.Test.Controllers
+namespace HotelTamagotchi.Test.Models
 {
     [TestClass]
     public class TamagotchiTest

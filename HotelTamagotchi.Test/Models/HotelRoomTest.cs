@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace HotelTamagotchi.Test.Controllers
+namespace HotelTamagotchi.Test.Models
 {
     [TestClass]
     public class HotelRoomTest
