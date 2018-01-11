@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using HotelTamagotchi.Web.Models;
 using HotelTamagotchi.Web.Repositories;
+using HotelTamagotchi.Web.ViewModels;
 
 namespace HotelTamagotchi.Web.Controllers
 {
@@ -35,7 +36,7 @@ namespace HotelTamagotchi.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tamagotchi tamagotchi = TamagotchiRepo.Find(id);
+            TamagotchiViewModel tamagotchi = TamagotchiRepo.Find(id);
             if (tamagotchi == null)
             {
                 return HttpNotFound();
@@ -54,7 +55,7 @@ namespace HotelTamagotchi.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,HotelRoomId,Name,Age,Pennies,Level,Health,Boredom,Alive")] Tamagotchi tamagotchi)
+        public ActionResult Create([Bind(Include = "Id,HotelRoomId,Name,Age,Pennies,Level,Health,Boredom,Alive")] TamagotchiViewModel tamagotchi)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +78,7 @@ namespace HotelTamagotchi.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tamagotchi tamagotchi = TamagotchiRepo.Find(id);
+            TamagotchiViewModel tamagotchi = TamagotchiRepo.Find(id);
             if (tamagotchi == null)
             {
                 return HttpNotFound();
@@ -90,7 +91,7 @@ namespace HotelTamagotchi.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,HotelRoomId,Name,Age,Pennies,Level,Health,Boredom,Alive")] Tamagotchi tamagotchi)
+        public ActionResult Edit([Bind(Include = "Id,HotelRoomId,Name,Age,Pennies,Level,Health,Boredom,Alive")] TamagotchiViewModel tamagotchi)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +108,7 @@ namespace HotelTamagotchi.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tamagotchi tamagotchi = TamagotchiRepo.Find(id);
+            TamagotchiViewModel tamagotchi = TamagotchiRepo.Find(id);
             if (tamagotchi == null)
             {
                 return HttpNotFound();
@@ -120,7 +121,7 @@ namespace HotelTamagotchi.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Tamagotchi tamagotchi = TamagotchiRepo.Find(id);
+            TamagotchiViewModel tamagotchi = TamagotchiRepo.Find(id);
             TamagotchiRepo.Remove(tamagotchi);
             return RedirectToAction("Index");
         }
