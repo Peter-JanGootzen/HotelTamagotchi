@@ -205,7 +205,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelRoomController.cs" />
     <Compile Include="Controllers\TamagotchiController.cs" />
@@ -213,6 +212,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\HotelRoom.cs" />
+    <Compile Include="Models\HotelRoomSize.cs" />
     <Compile Include="Models\HotelRoomType.cs" />
     <Compile Include="Models\HotelTamagotchiEntities.cs" />
     <Compile Include="Models\Tamagotchi.cs" />
@@ -223,8 +223,6 @@
     <Compile Include="Repositories\ITamagotchiRepository.cs" />
     <Compile Include="Repositories\TamagotchiRepository.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\HotelRoomViewModel.cs" />
-    <Compile Include="ViewModels\TamagotchiViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -292,8 +290,6 @@
     <Content Include="Views\HotelRoom\Details.cshtml" />
     <Content Include="Views\HotelRoom\Edit.cshtml" />
     <Content Include="Views\HotelRoom\Index.cshtml" />
-    <Content Include="Views\Booking\Index.cshtml" />
-    <Content Include="Views\Booking\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿using HotelTamagotchi.Web.ViewModels;
+﻿using HotelTamagotchi.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HotelTamagotchi.Web.Repositories
 {
-    public interface IHotelRoomRepository : IRepository<HotelRoomViewModel>
+    public interface IHotelRoomRepository : IRepository<HotelRoom>
     {
     }
 }

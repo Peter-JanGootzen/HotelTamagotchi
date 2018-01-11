@@ -1,5 +1,4 @@
 ﻿using HotelTamagotchi.Web.Models;
-using HotelTamagotchi.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,36 +15,31 @@ namespace HotelTamagotchi.Web.Repositories
             _database = database;
         }
 
-        public void Add(HotelRoomViewModel entity)
+        public void Add(HotelRoom entity)
         {
-            _database.HotelRoom.Add(entity.ToModel());
+            _database.HotelRoom.Add(entity);
             _database.SaveChanges();
         }
 
-        public HotelRoomViewModel Find(object id)
+        public HotelRoom Find(object id)
         {
-            return new HotelRoomViewModel(_database.HotelRoom.Find(id));
+            return _database.HotelRoom.Find(id);
         }
 
-        public IList<HotelRoomViewModel> GetAll()
+        public IList<HotelRoom> GetAll()
         {
-            List<HotelRoomViewModel> list = new List<HotelRoomViewModel>();
-            foreach(HotelRoom h in _database.HotelRoom)
-            {
-                list.Add(new HotelRoomViewModel(h));
-            }
-            return list;
+            return _database.HotelRoom.Include("Tamagotchi").ToList();
         }
 
-        public void Remove(HotelRoomViewModel entity)
+        public void Remove(HotelRoom entity)
         {
-            _database.HotelRoom.Remove(entity.ToModel());
+            _database.HotelRoom.Remove(entity);
             _database.SaveChanges();
         }
 
-        public void SetChanged(HotelRoomViewModel entity)
+        public void SetChanged(HotelRoom entity)
         {
-            _database.Entry(entity.ToModel()).State = System.Data.Entity.EntityState.Modified;
+            _database.Entry(entity).State = System.Data.Entity.EntityState.Modified;
             _database.SaveChanges();
         }
         public void Dispose()

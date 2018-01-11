@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using HotelTamagotchi.Web.Models;
 using HotelTamagotchi.Web.Repositories;
-using HotelTamagotchi.Web.ViewModels;
 
 namespace HotelTamagotchi.Web.Controllers
 {
@@ -34,7 +33,7 @@ namespace HotelTamagotchi.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HotelRoomViewModel hotelRoom = HotelRoomRepo.Find(id);
+            HotelRoom hotelRoom = HotelRoomRepo.Find(id);
             if (hotelRoom == null)
             {
                 return HttpNotFound();
@@ -53,7 +52,7 @@ namespace HotelTamagotchi.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Size,Type")] HotelRoomViewModel hotelRoom)
+        public ActionResult Create([Bind(Include = "Id,Size,Type")] HotelRoom hotelRoom)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +70,7 @@ namespace HotelTamagotchi.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HotelRoomViewModel hotelRoom = HotelRoomRepo.Find(id);
+            HotelRoom hotelRoom = HotelRoomRepo.Find(id);
             if (hotelRoom == null)
             {
                 return HttpNotFound();
@@ -92,7 +91,7 @@ namespace HotelTamagotchi.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Size,Type")] HotelRoomViewModel hotelRoom)
+        public ActionResult Edit([Bind(Include = "Id,Size,Type")] HotelRoom hotelRoom)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +108,7 @@ namespace HotelTamagotchi.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HotelRoomViewModel hotelRoom = HotelRoomRepo.Find(id);
+            HotelRoom hotelRoom = HotelRoomRepo.Find(id);
             if (hotelRoom == null)
             {
                 return HttpNotFound();
@@ -122,7 +121,7 @@ namespace HotelTamagotchi.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            HotelRoomViewModel hotelRoom = HotelRoomRepo.Find(id);
+            HotelRoom hotelRoom = HotelRoomRepo.Find(id);
             HotelRoomRepo.Remove(hotelRoom);
             return RedirectToAction("Index");
         }
