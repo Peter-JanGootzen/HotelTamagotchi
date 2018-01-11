@@ -7,17 +7,17 @@
 <table class="table">
     <tr>
         <th>
-            HotelRoom
+            Hotel room
         </th>
         
         <th>
-            @Html.DisplayNameFor(model => model.Size)
+            Size of the room  
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Type)
+            Type of the room
         </th>
         <th>
-            Boeken
+            Book
         </th>
 
     </tr>
@@ -29,7 +29,7 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Size)
+                @((int)item.Size)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Type)
@@ -37,7 +37,7 @@
             <td>
                 @if (!item.IsBooked)
                 {
-                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Booking", new { id = item.Id })'">Boek nu!</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Booking", new { id = item.Id })'">Book now!</button>
                 }
             </td>
         </tr>

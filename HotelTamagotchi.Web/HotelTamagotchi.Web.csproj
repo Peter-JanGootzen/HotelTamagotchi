@@ -213,7 +213,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\HotelRoom.cs" />
-    <Compile Include="Models\HotelRoomSize.cs" />
     <Compile Include="Models\HotelRoomType.cs" />
     <Compile Include="Models\HotelTamagotchiEntities.cs" />
     <Compile Include="Models\Tamagotchi.cs" />

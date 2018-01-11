@@ -17,7 +17,7 @@ namespace HotelTamagotchi.Web.Models
 
         public int Id { get; set; }
 
-        public HotelRoomSize Size { get; set; }
+        public byte Size { get; set; }
 
         public HotelRoomType Type { get; set; }
 

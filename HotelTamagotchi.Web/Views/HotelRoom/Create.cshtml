@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>HotelRoom</h4>
         <hr />
@@ -18,7 +18,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                    @Html.EnumDropDownListFor(model => model.Size, htmlAttributes: new { @class = "form-control" })
+                    @{List<int> list = new List<int>() { 2, 3, 5 };}
+                    @Html.DropDownList("Size", new SelectList(list), htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
 </div>
         </div>

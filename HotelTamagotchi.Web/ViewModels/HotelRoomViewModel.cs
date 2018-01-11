@@ -29,7 +29,7 @@ namespace HotelTamagotchi.Web.ViewModels
             set => _model.Id = value;
         }
 
-        public HotelRoomSize Size
+        public byte Size
         {
             get => _model.Size;
             set => _model.Size = value;
@@ -63,14 +63,14 @@ namespace HotelTamagotchi.Web.ViewModels
       
         #endregion
 
-        public void AddTamagotchi(Tamagotchi tamagotchi)
+        public void AddTamagotchi(TamagotchiViewModel tamagotchi)
         {
-            _model.Tamagotchi.Add(tamagotchi);
+            _model.Tamagotchi.Add(tamagotchi.ToModel());
         }
 
-        public void RemoveTamagotchi(Tamagotchi tamagotchi)
+        public void RemoveTamagotchi(TamagotchiViewModel tamagotchi)
         {
-            _model.Tamagotchi.Remove(tamagotchi);
+            _model.Tamagotchi.Remove(tamagotchi.ToModel());
         }
         public HotelRoom ToModel()
         {
@@ -142,7 +142,7 @@ namespace HotelTamagotchi.Web.ViewModels
             var size = new[] { "Size" };
             var type = new[] { "Type" };
 
-            if (Size != HotelRoomSize.Bigroom & Size != HotelRoomSize.Mediumroom & Size != HotelRoomSize.Smallroom)
+            if (Size != 2 & Size != 3 & Size != 5)
             {
                 errors.Add(new ValidationResult("De grootte van een kamer moet een grote, medium of kleine kamer zijn!", size));
             }

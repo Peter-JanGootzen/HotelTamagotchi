@@ -142,10 +142,5 @@ namespace HotelTamagotchi.Web.ViewModels
 
             return errors;
         }
-
-        public override string ToString()
-        {
-            return _model.Name;
-        }
     }
 }

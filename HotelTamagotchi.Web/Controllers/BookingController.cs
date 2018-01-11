@@ -22,13 +22,18 @@ namespace HotelTamagotchi.Web.Controllers
 
 
         // GET: Booking
+        [HttpGet]
         public ActionResult Index()
         {
             return View(HotelRoomRepo.GetAll());
         }
-
+        [HttpGet]
         public ActionResult Create(int? id)
         {
+            if (TempData["ViewData"] != null)
+            {
+                ViewData = (ViewDataDictionary)TempData["ViewData"];
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +44,41 @@ namespace HotelTamagotchi.Web.Controllers
                 return HttpNotFound();
             }
             return View(Tuple.Create(hotelRoom, TamagotchiRepo.GetAll()));
+        }
+        [HttpPost]
+        public ActionResult Create(FormCollection formCollection, HotelRoomViewModel hotelroom)
+        {
+            hotelroom = HotelRoomRepo.Find(hotelroom.Id);
+            List<TamagotchiViewModel> addToHotel = new List<TamagotchiViewModel>();
+            int i = 0;
+            foreach(var t in TamagotchiRepo.GetAll())
+            {
+                if(i > (int)hotelroom.Size)
+                {
+                    string sizeError = "Je mag maar maximaal: " + (int)hotelroom.Size + " tamagotchis boeken";
+                    ModelState.AddModelError(string.Empty,sizeError);
+                    TempData["ViewData"] = ViewData;
+                    return RedirectToAction("Create");
+
+                }
+                if (formCollection[t.Id + ""].Equals("true,false"))
+                {
+                    addToHotel.Add(t);
+                    i++;
+                }
+            }
+            if(addToHotel.Count == 0)
+            {
+                ModelState.AddModelError(String.Empty, "Je moet minimaal 1 persoon boeken");
+                TempData["ViewData"] = ViewData;
+                return RedirectToAction("Create");
+            }
+            foreach(var t in addToHotel)
+            {
+                t.HotelRoomId = hotelroom.Id;
+                TamagotchiRepo.SetChanged(t);
+            }
+            return RedirectToAction("Index");
         }
     }
 }
