@@ -20,8 +20,8 @@ namespace HotelTamagotchi.Test.Controllers
                 Name = "Test_Creat",
                 Alive = false
             };
-            HotelTamagotchiEntities d = new HotelTamagotchiEntities();
-            ITamagotchiRepository tr = new TamagotchiRepository(d);
+            IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
+            ITamagotchiRepository tr = new TamagotchiRepository(c);
             TamagotchiController tc = new TamagotchiController(tr);
 
             tc.Create(t);
@@ -37,8 +37,8 @@ namespace HotelTamagotchi.Test.Controllers
                 Name = "Test_Edit",
                 Alive = false
             };
-            HotelTamagotchiEntities d = new HotelTamagotchiEntities();
-            ITamagotchiRepository tr = new TamagotchiRepository(d);
+            IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
+            ITamagotchiRepository tr = new TamagotchiRepository(c);
             TamagotchiController tc = new TamagotchiController(tr);
 
             tc.Create(t);
@@ -50,8 +50,8 @@ namespace HotelTamagotchi.Test.Controllers
         [TestMethod]
         public void Test_Errors()
         {
-            HotelTamagotchiEntities d = new HotelTamagotchiEntities();
-            ITamagotchiRepository tr = new TamagotchiRepository(d);
+            IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
+            ITamagotchiRepository tr = new TamagotchiRepository(c);
             TamagotchiController tc = new TamagotchiController(tr);
 
             var r = tc.Delete(null);
@@ -73,8 +73,8 @@ namespace HotelTamagotchi.Test.Controllers
                 Name = "Test_Remov",
                 Alive = false
             };
-            HotelTamagotchiEntities d = new HotelTamagotchiEntities();
-            ITamagotchiRepository tr = new TamagotchiRepository(d);
+            IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
+            ITamagotchiRepository tr = new TamagotchiRepository(c); ;
             TamagotchiController tc = new TamagotchiController(tr);
 
             tc.Create(t);
@@ -86,8 +86,8 @@ namespace HotelTamagotchi.Test.Controllers
         [TestMethod]
         public void Test_Dispose()
         {
-            HotelTamagotchiEntities d = new HotelTamagotchiEntities();
-            ITamagotchiRepository tr = new TamagotchiRepository(d);
+            IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
+            ITamagotchiRepository tr = new TamagotchiRepository(c);
             TamagotchiController tc = new TamagotchiController(tr);
 
             tc.Dispose();

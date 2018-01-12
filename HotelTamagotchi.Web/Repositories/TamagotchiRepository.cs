@@ -9,13 +9,12 @@ namespace HotelTamagotchi.Web.Repositories
 {
     public class TamagotchiRepository : ITamagotchiRepository
     {
-        HotelTamagotchiEntities _database;
+        IHotelTamagotchiContext _database;
 
-        public TamagotchiRepository(HotelTamagotchiEntities database)
+        public TamagotchiRepository(IHotelTamagotchiContext database)
         {
             _database = database;
         }
-
 
         public void Add(TamagotchiViewModel entity)
         {
@@ -55,7 +54,6 @@ namespace HotelTamagotchi.Web.Repositories
 
         public void SetChanged(TamagotchiViewModel entity)
         {
-            _database.Entry(entity.ToModel()).State = System.Data.Entity.EntityState.Modified;
             _database.SaveChanges();
         }
 

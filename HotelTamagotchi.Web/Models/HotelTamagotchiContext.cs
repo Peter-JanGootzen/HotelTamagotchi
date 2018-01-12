@@ -5,15 +5,15 @@ namespace HotelTamagotchi.Web.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class HotelTamagotchiEntities : DbContext
+    public partial class HotelTamagotchiContext : DbContext, IHotelTamagotchiContext
     {
-        public HotelTamagotchiEntities()
-            : base("name=HotelTamagotchiEntities")
+        public HotelTamagotchiContext()
+            : base("name=HotelTamagotchiContext")
         {
         }
 
-        public virtual DbSet<HotelRoom> HotelRoom { get; set; }
-        public virtual DbSet<Tamagotchi> Tamagotchi { get; set; }
+        public virtual IDbSet<HotelRoom> HotelRoom { get; set; }
+        public virtual IDbSet<Tamagotchi> Tamagotchi { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

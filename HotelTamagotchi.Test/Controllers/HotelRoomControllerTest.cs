@@ -20,15 +20,15 @@ namespace HotelHotelRoom.Test.Controllers
                 Size = 2,
                 Type = HotelRoomType.Workroom
             };
-            HotelTamagotchiEntities d = new HotelTamagotchiEntities();
-            IHotelRoomRepository tr = new HotelRoomRepository(d);
+
+            IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
+            IHotelRoomRepository tr = new HotelRoomRepository(c);
             HotelRoomController tc = new HotelRoomController(tr);
 
             tc.Create(t);
 
             Assert.AreEqual(tr.Find(t.Id).ToModel(), t.ToModel());
             tr.Remove(t);
-
         }
 
         [TestMethod]
@@ -39,8 +39,8 @@ namespace HotelHotelRoom.Test.Controllers
                 Size = 2,
                 Type = HotelRoomType.Workroom
             };
-            HotelTamagotchiEntities d = new HotelTamagotchiEntities();
-            IHotelRoomRepository tr = new HotelRoomRepository(d);
+            IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
+            IHotelRoomRepository tr = new HotelRoomRepository(c); ;
             HotelRoomController tc = new HotelRoomController(tr);
 
             tc.Create(t);
@@ -53,8 +53,8 @@ namespace HotelHotelRoom.Test.Controllers
         [TestMethod]
         public void Test_Errors()
         {
-            HotelTamagotchiEntities d = new HotelTamagotchiEntities();
-            IHotelRoomRepository tr = new HotelRoomRepository(d);
+            IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
+            IHotelRoomRepository tr = new HotelRoomRepository(c);
             HotelRoomController tc = new HotelRoomController(tr);
 
             var r = tc.Delete(null);
@@ -76,8 +76,8 @@ namespace HotelHotelRoom.Test.Controllers
                 Size = 2,
                 Type = HotelRoomType.Workroom
             };
-            HotelTamagotchiEntities d = new HotelTamagotchiEntities();
-            IHotelRoomRepository tr = new HotelRoomRepository(d);
+            IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
+            IHotelRoomRepository tr = new HotelRoomRepository(c);
             HotelRoomController tc = new HotelRoomController(tr);
 
             tc.Create(t);
@@ -89,8 +89,8 @@ namespace HotelHotelRoom.Test.Controllers
         [TestMethod]
         public void Test_Dispose()
         {
-            HotelTamagotchiEntities d = new HotelTamagotchiEntities();
-            IHotelRoomRepository tr = new HotelRoomRepository(d);
+            IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
+            IHotelRoomRepository tr = new HotelRoomRepository(c);
             HotelRoomController tc = new HotelRoomController(tr);
 
             tc.Dispose();

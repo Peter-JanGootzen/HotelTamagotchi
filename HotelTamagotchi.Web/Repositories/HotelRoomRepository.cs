@@ -9,9 +9,9 @@ namespace HotelTamagotchi.Web.Repositories
 {
     public class HotelRoomRepository : IHotelRoomRepository
     {
-        HotelTamagotchiEntities _database;
+        IHotelTamagotchiContext _database;
 
-        public HotelRoomRepository(HotelTamagotchiEntities database)
+        public HotelRoomRepository(IHotelTamagotchiContext database)
         {
             _database = database;
         }
@@ -54,7 +54,6 @@ namespace HotelTamagotchi.Web.Repositories
 
         public void SetChanged(HotelRoomViewModel entity)
         {
-            _database.Entry(entity.ToModel()).State = System.Data.Entity.EntityState.Modified;
             _database.SaveChanges();
         }
         public void Dispose()
