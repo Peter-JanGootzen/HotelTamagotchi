@@ -24,7 +24,11 @@ namespace HotelTamagotchi.Web.Repositories
 
         public HotelRoomViewModel Find(object id)
         {
-            return new HotelRoomViewModel(_database.HotelRoom.Find(id));
+            if(_database.HotelRoom.Find(id) != null)
+            {
+                return new HotelRoomViewModel(_database.HotelRoom.Find(id));
+            }
+            return null;
         }
 
         public IList<HotelRoomViewModel> GetAll()

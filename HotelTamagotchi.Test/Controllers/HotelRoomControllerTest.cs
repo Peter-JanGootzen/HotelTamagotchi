@@ -5,6 +5,7 @@ using HotelTamagotchi.Web.Models;
 using HotelTamagotchi.Web.Repositories;
 using System.Web.Mvc;
 using System.Net;
+using HotelTamagotchi.Web.ViewModels;
 
 namespace HotelHotelRoom.Test.Controllers
 {
@@ -14,9 +15,9 @@ namespace HotelHotelRoom.Test.Controllers
         [TestMethod]
         public void Test_Create()
         {
-            HotelRoom t = new HotelRoom()
+            HotelRoomViewModel t = new HotelRoomViewModel()
             {
-                Size = HotelRoomSize.Smallroom,
+                Size = 2,
                 Type = HotelRoomType.Workroom
             };
             HotelTamagotchiEntities d = new HotelTamagotchiEntities();
@@ -25,15 +26,17 @@ namespace HotelHotelRoom.Test.Controllers
 
             tc.Create(t);
 
-            Assert.AreEqual(tr.Find(t.Id), t);
+            Assert.AreEqual(tr.Find(t.Id).ToModel(), t.ToModel());
+            tr.Remove(t);
+
         }
 
         [TestMethod]
         public void Test_Edit()
         {
-            HotelRoom t = new HotelRoom()
+            HotelRoomViewModel t = new HotelRoomViewModel()
             {
-                Size = HotelRoomSize.Smallroom,
+                Size = 2,
                 Type = HotelRoomType.Workroom
             };
             HotelTamagotchiEntities d = new HotelTamagotchiEntities();
@@ -41,9 +44,10 @@ namespace HotelHotelRoom.Test.Controllers
             HotelRoomController tc = new HotelRoomController(tr);
 
             tc.Create(t);
-            t.Size = HotelRoomSize.Bigroom;
+            t.Size = 5;
             tc.Edit(t);
-            Assert.AreEqual(tr.Find(t.Id).Size, HotelRoomSize.Bigroom);
+            Assert.AreEqual(tr.Find(t.Id).Size, 5);
+            tr.Remove(t);
         }
 
         [TestMethod]
@@ -67,9 +71,9 @@ namespace HotelHotelRoom.Test.Controllers
         [TestMethod]
         public void Test_DeleteConfirmed()
         {
-            HotelRoom t = new HotelRoom()
+            HotelRoomViewModel t = new HotelRoomViewModel()
             {
-                Size = HotelRoomSize.Smallroom,
+                Size = 2,
                 Type = HotelRoomType.Workroom
             };
             HotelTamagotchiEntities d = new HotelTamagotchiEntities();

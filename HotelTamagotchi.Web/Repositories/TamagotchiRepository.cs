@@ -25,7 +25,11 @@ namespace HotelTamagotchi.Web.Repositories
 
         public TamagotchiViewModel Find(object id)
         {
-            return new TamagotchiViewModel(_database.Tamagotchi.Find(id));
+            if(_database.Tamagotchi.Find(id) != null)
+            {
+                return new TamagotchiViewModel(_database.Tamagotchi.Find(id));
+            }
+            return null;
         }
 
         public IList<TamagotchiViewModel> GetAll()
