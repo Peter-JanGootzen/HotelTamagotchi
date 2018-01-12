@@ -95,13 +95,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HotelRoomControllerTest.cs" />
     <Compile Include="Controllers\BookingControllerTest.cs" />
-    <Compile Include="Models\TamagotchiTest.cs" />
-    <Compile Include="Models\HotelRoomTest.cs" />
-    <Compile Include="Controllers\TamagotchiControllerTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Controllers\HotelRoomControllerTest.cs" />
+    <Compile Include="Controllers\TamagotchiControllerTest.cs" />
+    <Compile Include="Models\HotelRoomTest.cs" />
+    <Compile Include="Models\TamagotchiTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -115,6 +115,7 @@
       <Name>HotelTamagotchi.Web</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

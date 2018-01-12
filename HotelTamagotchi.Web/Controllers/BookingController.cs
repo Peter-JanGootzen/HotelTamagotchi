@@ -61,7 +61,7 @@ namespace HotelTamagotchi.Web.Controllers
                     return RedirectToAction("Create");
 
                 }
-                if (formCollection[t.Id + ""].Equals("true,false"))
+                if (formCollection[t.Id +""] != null && formCollection[t.Id + ""].Equals("true,false"))
                 {
                     addToHotel.Add(t);
                     i++;
