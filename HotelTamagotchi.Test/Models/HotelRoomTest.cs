@@ -4,6 +4,7 @@ using HotelTamagotchi.Web.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Linq;
+using HotelTamagotchi.Web.ViewModels;
 
 namespace HotelTamagotchi.Test.Models
 {
@@ -14,10 +15,10 @@ namespace HotelTamagotchi.Test.Models
         public void Hotelroom_properties()
         {
             //arrange
-            HotelRoom h = new HotelRoom() { Size = HotelRoomSize.Bigroom, Type = HotelRoomType.Gameroom };
+            HotelRoomViewModel h = new HotelRoomViewModel() { Size = 5, Type = HotelRoomType.Gameroom };
 
             //assert
-            Assert.AreEqual(HotelRoomSize.Bigroom, h.Size);
+            Assert.AreEqual(5, h.Size);
             Assert.AreEqual(HotelRoomType.Gameroom, h.Type);
         }
 
@@ -25,7 +26,7 @@ namespace HotelTamagotchi.Test.Models
         public void Hotelroom_valid_validation()
         {
             //arrange
-            HotelRoom h = new HotelRoom() { Size = HotelRoomSize.Bigroom, Type = HotelRoomType.Gameroom };
+            HotelRoomViewModel h = new HotelRoomViewModel() { Size = 5, Type = HotelRoomType.Gameroom };
             //act
             var errors = h.Validate(null);
             //assert

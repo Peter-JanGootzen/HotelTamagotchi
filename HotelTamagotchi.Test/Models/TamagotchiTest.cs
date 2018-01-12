@@ -1,5 +1,6 @@
 ﻿using HotelTamagotchi.Web.Controllers;
 using HotelTamagotchi.Web.Models;
+using HotelTamagotchi.Web.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace HotelTamagotchi.Test.Models
         public void Tamagotchi_properties()
         {
             // Arrange
-            Tamagotchi t = new Tamagotchi() { Age = age, Name = name, Pennies = pennies, Level = level, Health = health, Boredom = boredom, Alive = alive  };
+            TamagotchiViewModel t = new TamagotchiViewModel() { Age = age, Name = name, Pennies = pennies, Level = level, Health = health, Boredom = boredom, Alive = alive  };
 
             // Act
             
@@ -44,7 +45,7 @@ namespace HotelTamagotchi.Test.Models
         public void Tamagotchi_valid_validation()
         {
             // Arrange
-            Tamagotchi t = new Tamagotchi() { Age = 0, Name = name, Pennies = pennies, Level = level, Health = health, Boredom = boredom, Alive = alive };
+            TamagotchiViewModel t = new TamagotchiViewModel() { Age = 0, Name = name, Pennies = pennies, Level = level, Health = health, Boredom = boredom, Alive = alive };
             // Act
             var errors = t.Validate(null);
             //Assert
@@ -56,8 +57,8 @@ namespace HotelTamagotchi.Test.Models
         public void Tamagotchi_invalid_validation()
         {
             // Arrange
-            Tamagotchi t1 = new Tamagotchi() { Age = -1, Name = "Testestestest", Pennies = -1, Level = -1, Health = 101, Boredom = 101, Alive = alive };
-            Tamagotchi t2 = new Tamagotchi() { Age = 0, Name = null, Pennies = pennies, Level = level, Health = health, Boredom = boredom, Alive = alive };
+            TamagotchiViewModel t1 = new TamagotchiViewModel() { Age = -1, Name = "Testestestest", Pennies = -1, Level = -1, Health = 101, Boredom = 101, Alive = alive };
+            TamagotchiViewModel t2 = new TamagotchiViewModel() { Age = 0, Name = null, Pennies = pennies, Level = level, Health = health, Boredom = boredom, Alive = alive };
 
             // Act
             string NameNull = "Je moet een naam invullen!";

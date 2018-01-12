@@ -5,6 +5,7 @@ using HotelTamagotchi.Web.Models;
 using HotelTamagotchi.Web.Repositories;
 using System.Web.Mvc;
 using System.Net;
+using HotelTamagotchi.Web.ViewModels;
 
 namespace HotelTamagotchi.Test.Controllers
 {
@@ -14,7 +15,7 @@ namespace HotelTamagotchi.Test.Controllers
         [TestMethod]
         public void Test_Create()
         {
-            Tamagotchi t = new Tamagotchi()
+            TamagotchiViewModel t = new TamagotchiViewModel()
             {
                 Name = "Test_Creat",
                 Alive = false
@@ -25,13 +26,13 @@ namespace HotelTamagotchi.Test.Controllers
 
             tc.Create(t);
 
-            Assert.AreEqual(tr.Find(t.Id), t);
+            Assert.AreEqual(tr.Find(t.Id).ToModel(), t.ToModel());
         }
 
         [TestMethod]
         public void Test_Edit()
         {
-            Tamagotchi t = new Tamagotchi()
+            TamagotchiViewModel t = new TamagotchiViewModel()
             {
                 Name = "Test_Edit",
                 Alive = false
@@ -67,7 +68,7 @@ namespace HotelTamagotchi.Test.Controllers
         [TestMethod]
         public void Test_DeleteConfirmed()
         {
-            Tamagotchi t = new Tamagotchi()
+            TamagotchiViewModel t = new TamagotchiViewModel()
             {
                 Name = "Test_Remov",
                 Alive = false
