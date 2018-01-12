@@ -8,22 +8,23 @@
 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 @using (Html.BeginForm("Create", "Booking", FormMethod.Post))
 {
+    <div class="row">
+        @{int y = 0;
+            foreach (var t in Model.Item2)
+            {
 
-    int y = 0;
-    foreach (var t in Model.Item2)
-    {
-        <div class="row">
-            <div class="col-md-4">
-                @Html.Label(t.Name)
-                @{string id = t.Id + "";}
-                @Html.CheckBox(id)
-                @{y = y + 1;}
-            </div>
-        </div>
+                <div class="col-md-4">
+                    @Html.Label(t.Name)
+                    @{string id = t.Id + "";}
+                    @Html.CheckBox(id)
+                    @{y = y + 1;}
+                </div>
+            }
+        }
+    </div>
 
-    }
- }
-<button type="submit">Book</button>
+    <button type="submit">Book</button>
+}
 
 <div>
     @Html.ActionLink("Back to List", "Index")
