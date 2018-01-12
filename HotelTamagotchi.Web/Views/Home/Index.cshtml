@@ -4,27 +4,34 @@
 
 <div class="jumbotron">
     <h1>HotelTamagotchi</h1>
-    <p class="lead"></p>
+    <p class="lead"><button type="button" class="btn btn-default" onclick="location.href='@Url.Action("StartNight", "Home")'" )>Start Night!</button></p>
 </div>
 
+@if (TempData["NightSuccess"] != null)
+{
+    <div class="alert alert-success alert-dismissable fade in">@TempData["NightSuccess"]</div>
+}
+else if (TempData["NightWarning"] != null)
+{
+    <div class="alert alert-warning alert-dismissable fade in">@TempData["NightWarning"]</div>
+}
 <div class="row">
-        <div class="col-md-4">
-            <h2>Tamagotchi</h2>
-            <p>
-                Create, update, edit and delete Tamagotchi!<br />
-                Whilst editing a Tamagotchi you can also assign it to a room and start the night.
-            </p>
-            <div class="btn btn-default">@Html.ActionLink("Manage Tamagotchi", "Index", "Tamagotchi")</div>
-        </div>
-        <div class="col-md-4">
-            <h2>Bookings</h2>
-            <p>Book a room for your Tamagotchi!</p>
-            <div class="btn btn-default">@Html.ActionLink("Book a Hotelroom", "Index", "Booking")</div>
-        </div>
-        <div class="col-md-4">
-           <h2>Hotelrooms</h2>
-           <p>Create, update, edit and delete Hotelrooms!</p>
-           <div class="btn btn-default">@Html.ActionLink("Manage Hotelrooms", "Index", "Hotelroom")</div>
-        </div>
-        
+    <div class="col-md-4">
+        <h2>Tamagotchi</h2>
+        <p>
+            Create, update, edit and delete Tamagotchi!<br />
+            Whilst editing a Tamagotchi you can also assign it to a room and start the night.
+        </p>
+        <button class="btn btn-default" onclick="location.href='@Url.Action("Index", "Tamagotchi")'">Manage Tamagotchi</button>
+    </div>
+    <div class="col-md-4">
+        <h2>Bookings</h2>
+        <p>Book a room for your Tamagotchi!</p>
+        <button class="btn btn-default" onclick="location.href='@Url.Action("Index", "Booking")'">Make a Booking</button>
+    </div>
+    <div class="col-md-4">
+        <h2>Hotelrooms</h2>
+        <p>Create, update, edit and delete Hotelrooms!</p>
+        <button class="btn btn-default" onclick="location.href='@Url.Action("Index", "HotelRoom")'">Manage HotelRooms</button>
+    </div>
 </div>

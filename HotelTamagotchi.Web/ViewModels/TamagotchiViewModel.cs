@@ -10,15 +10,20 @@ namespace HotelTamagotchi.Web.ViewModels
     public class TamagotchiViewModel : IValidatableObject
     {
         Tamagotchi _model;
+        HotelRoomViewModel _hotelRoomViewModel;
 
         public TamagotchiViewModel()
         {
             _model = new Tamagotchi();
+            if (_model != null)
+                _hotelRoomViewModel = new HotelRoomViewModel(_model.HotelRoom);
         }
 
         public TamagotchiViewModel(Tamagotchi tamagotchi)
         {
             _model = tamagotchi;
+            if (_model.HotelRoom != null)
+                _hotelRoomViewModel = new HotelRoomViewModel(_model.HotelRoom);
         }
 
 
@@ -70,26 +75,23 @@ namespace HotelTamagotchi.Web.ViewModels
             set => _model.Alive = value;
         }
 
-        public HotelRoom HotelRoom
+        public HotelRoomViewModel HotelRoom
         {
-            get => _model.HotelRoom;
-            set => _model.HotelRoom = value;
-        }
-#endregion
-
-        public void SleepOutside()
-        {
-            if (_model.HotelRoom != null)
+            get => _hotelRoomViewModel;
+            set
             {
-                if (_model.Health - 20 >= 0)
-                    _model.Health -= 20;
+                _hotelRoomViewModel = value;
+                if (value == null)
+                    _model.HotelRoom = null;
                 else
-                    _model.Health = 0;
-                if (_model.Boredom + 20 <= 100)
-                    _model.Boredom += 20;
-                else
-                    _model.Boredom = 10;
+                    _model.HotelRoom = value.ToModel();
             }
+        }
+        #endregion
+
+        public void LeaveRoom()
+        {
+            HotelRoom = null;
         }
 
         public Tamagotchi ToModel()

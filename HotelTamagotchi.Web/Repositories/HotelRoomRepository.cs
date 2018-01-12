@@ -24,21 +24,26 @@ namespace HotelTamagotchi.Web.Repositories
 
         public HotelRoomViewModel Find(object id)
         {
-            if(_database.HotelRoom.Find(id) != null)
+            if (_database.HotelRoom.Find(id) != null)
             {
                 return new HotelRoomViewModel(_database.HotelRoom.Find(id));
             }
             return null;
         }
 
-        public IList<HotelRoomViewModel> GetAll()
+        public List<HotelRoomViewModel> GetAll()
         {
             List<HotelRoomViewModel> list = new List<HotelRoomViewModel>();
-            foreach(HotelRoom h in _database.HotelRoom)
+            foreach (HotelRoom h in _database.HotelRoom)
             {
                 list.Add(new HotelRoomViewModel(h));
             }
             return list;
+        }
+
+        public List<HotelRoomViewModel> GetAllAvailableHotelRooms()
+        {
+            return GetAll().Where(h => !h.IsBooked()).ToList();
         }
 
         public void Remove(HotelRoomViewModel entity)

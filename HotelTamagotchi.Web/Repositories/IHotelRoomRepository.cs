@@ -9,5 +9,6 @@ namespace HotelTamagotchi.Web.Repositories
 {
     public interface IHotelRoomRepository : IRepository<HotelRoomViewModel>
     {
+        List<HotelRoomViewModel> GetAllAvailableHotelRooms();
     }
 }

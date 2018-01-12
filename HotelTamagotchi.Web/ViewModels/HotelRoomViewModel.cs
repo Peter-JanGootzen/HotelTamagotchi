@@ -41,23 +41,11 @@ namespace HotelTamagotchi.Web.ViewModels
             set => _model.Type = value;
         }
 
-        public bool IsBooked
-        {
-            get => _model.Tamagotchi.Count != 0;
-            private set { }
-        }
+        public bool IsBooked() => _model.Tamagotchi.Count != 0;
 
         public List<TamagotchiViewModel> Tamagotchi
         {
-            get
-            {
-                List<TamagotchiViewModel> list = new List<TamagotchiViewModel>();
-                foreach(Tamagotchi t in _model.Tamagotchi)
-                {
-                    list.Add(new TamagotchiViewModel(t));
-                }
-                return list;
-            }
+            get => _model.Tamagotchi.Select(t => new TamagotchiViewModel(t)).ToList();
         }
 
       
@@ -75,65 +63,6 @@ namespace HotelTamagotchi.Web.ViewModels
         public HotelRoom ToModel()
         {
             return _model;
-        }
-
-        public void ProcessNight()
-        {
-            if (_model.Type != HotelRoomType.Fightroom)
-            {
-                foreach (Tamagotchi t in _model.Tamagotchi)
-                {
-                    switch (_model.Type)
-                    {
-                        case HotelRoomType.Restroom:
-                            t.Pennies -= 10;
-                            if (t.Health + 20 <= 100)
-                                t.Health += 20;
-                            else
-                                t.Health = 100;
-                            if (t.Boredom + 10 <= 100)
-                                t.Boredom += 10;
-                            else
-                                t.Boredom = 100;
-                            break;
-                        case HotelRoomType.Gameroom:
-                            t.Pennies -= 20;
-                            t.Boredom = 0;
-                            break;
-                        case HotelRoomType.Workroom:
-                            Random r = new Random(DateTime.Now.GetHashCode());
-                            int penniesRandom = r.Next(10, 60);
-                            t.Pennies += penniesRandom;
-                            if (t.Boredom + 20 <= 100)
-                                t.Boredom += 20;
-                            else
-                                t.Boredom = 100;
-                            break;
-                    }
-                }
-            }
-            else
-            {
-                Random r = new Random(DateTime.Now.GetHashCode());
-                int winnerIndex = r.Next(0, _model.Tamagotchi.Count);
-                Tamagotchi[] tArray = _model.Tamagotchi.ToArray();
-                for (int i = 0; i < _model.Tamagotchi.Count; i++)
-                {
-                    if (i == winnerIndex)
-                    {
-                        tArray[i].Pennies += 20;
-                        tArray[i].Level += 1;
-                    }
-                    else
-                    {
-                        tArray[i].Pennies -= 20;
-                        if (tArray[i].Health - 30 >= 0)
-                            tArray[i].Health -= 30;
-                        else
-                            tArray[i].Health = 0;
-                    }
-                }
-            }
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

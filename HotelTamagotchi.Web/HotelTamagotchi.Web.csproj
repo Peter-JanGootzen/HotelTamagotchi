@@ -208,6 +208,7 @@
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelRoomController.cs" />
+    <Compile Include="Controllers\NightController.cs" />
     <Compile Include="Controllers\TamagotchiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

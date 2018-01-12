@@ -10,7 +10,7 @@ namespace HotelTamagotchi.Web.Repositories
     {
         T Find(object id);
         void SetChanged(T entity);
-        IList<T> GetAll();
+        List<T> GetAll();
         void Add(T entity);
         void Remove(T entity);
         void Dispose();

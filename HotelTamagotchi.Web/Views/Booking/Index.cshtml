@@ -35,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
-                @if (!item.IsBooked)
+                @if (!item.IsBooked())
                 {
                     <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Booking", new { id = item.Id })'">Book now!</button>
                 }

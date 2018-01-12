@@ -25,14 +25,14 @@ namespace HotelTamagotchi.Web.Repositories
 
         public TamagotchiViewModel Find(object id)
         {
-            if(_database.Tamagotchi.Find(id) != null)
+            if (_database.Tamagotchi.Find(id) != null)
             {
                 return new TamagotchiViewModel(_database.Tamagotchi.Find(id));
             }
             return null;
         }
 
-        public IList<TamagotchiViewModel> GetAll()
+        public List<TamagotchiViewModel> GetAll()
         {
             List<TamagotchiViewModel> list = new List<TamagotchiViewModel>();
             foreach (Tamagotchi t in _database.Tamagotchi)
@@ -40,6 +40,11 @@ namespace HotelTamagotchi.Web.Repositories
                 list.Add(new TamagotchiViewModel(t));
             }
             return list;
+        }
+
+        public List<TamagotchiViewModel> GetAllHomelessTamagotchi()
+        {
+            return GetAll().Where(t => t.HotelRoom == null).ToList();
         }
 
         public void Remove(TamagotchiViewModel entity)
