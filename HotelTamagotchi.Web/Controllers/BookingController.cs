@@ -55,7 +55,7 @@ namespace HotelTamagotchi.Web.Controllers
             {
                 if(i > (int)hotelroom.Size)
                 {
-                    string sizeError = "Je mag maar maximaal: " + (int)hotelroom.Size + " tamagotchis boeken";
+                    string sizeError = "You may only book " + (int)hotelroom.Size + " tamagotchis";
                     ModelState.AddModelError(string.Empty,sizeError);
                     TempData["ViewData"] = ViewData;
                     return RedirectToAction("Create");
@@ -69,7 +69,7 @@ namespace HotelTamagotchi.Web.Controllers
             }
             if(addToHotel.Count == 0)
             {
-                ModelState.AddModelError(String.Empty, "Je moet minimaal 1 persoon boeken");
+                ModelState.AddModelError(String.Empty, "You have to book atleast 1 tamagotchi");
                 TempData["ViewData"] = ViewData;
                 return RedirectToAction("Create");
             }
