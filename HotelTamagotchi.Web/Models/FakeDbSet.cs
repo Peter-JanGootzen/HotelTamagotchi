@@ -7,55 +7,55 @@ using System.Web;
 
 namespace HotelTamagotchi.Web.Models
 {
-    public abstract class FakeDbSet<IHotelTamagotchiEntity> : IDbSet<IHotelTamagotchiEntity>
-    where IHotelTamagotchiEntity : class
+    public abstract class FakeDbSet<TEnity> : IDbSet<TEnity>
+    where TEnity : class
     {
-        ObservableCollection<IHotelTamagotchiEntity> _data;
+        ObservableCollection<TEnity> _data;
         IQueryable _query;
 
         public FakeDbSet()
         {
-            _data = new ObservableCollection<IHotelTamagotchiEntity>();
+            _data = new ObservableCollection<TEnity>();
             _query = _data.AsQueryable();
         }
 
-        public abstract IHotelTamagotchiEntity Find(params object[] keyValues);
+        public abstract TEnity Find(params object[] keyValues);
 
-        public IHotelTamagotchiEntity Add(IHotelTamagotchiEntity item)
+        public TEnity Add(TEnity item)
         {
             _data.Add(item);
             return item;
         }
 
-        public IHotelTamagotchiEntity Remove(IHotelTamagotchiEntity item)
+        public TEnity Remove(TEnity item)
         {
             _data.Remove(item);
             return item;
         }
 
-        public IHotelTamagotchiEntity Attach(IHotelTamagotchiEntity item)
+        public TEnity Attach(TEnity item)
         {
             _data.Add(item);
             return item;
         }
 
-        public IHotelTamagotchiEntity Detach(IHotelTamagotchiEntity item)
+        public TEnity Detach(TEnity item)
         {
             _data.Remove(item);
             return item;
         }
 
-        public IHotelTamagotchiEntity Create()
+        public TEnity Create()
         {
-            return Activator.CreateInstance<IHotelTamagotchiEntity>();
+            return Activator.CreateInstance<TEnity>();
         }
 
-        public TDerivedEntity Create<TDerivedEntity>() where TDerivedEntity : class, IHotelTamagotchiEntity
+        public TDerivedEntity Create<TDerivedEntity>() where TDerivedEntity : class, TEnity
         {
             return Activator.CreateInstance<TDerivedEntity>();
         }
 
-        public ObservableCollection<IHotelTamagotchiEntity> Local
+        public ObservableCollection<TEnity> Local
         {
             get { return _data; }
         }
@@ -80,7 +80,7 @@ namespace HotelTamagotchi.Web.Models
             return _data.GetEnumerator();
         }
 
-        IEnumerator<IHotelTamagotchiEntity> IEnumerable<IHotelTamagotchiEntity>.GetEnumerator()
+        IEnumerator<TEnity> IEnumerable<TEnity>.GetEnumerator()
         {
             return _data.GetEnumerator();
         }
