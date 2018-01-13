@@ -1,4 +1,5 @@
 ﻿using HotelTamagotchi.Web.App_Start;
+using HotelTamagotchi.Web.Repositories;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,23 @@ namespace HotelTamagotchi.Web.Controllers
             ViewBag.Message = "Programmeren 6 assessment by Bram-Boris Meerlo and Peter-Jan Gootzen";
 
             return View();
+        }
+
+        public ActionResult Book()
+        {
+            ITamagotchiRepository TamagotchiRepo = NinjectWebCommon.Kernel.Get<TamagotchiRepository>();
+            IHotelRoomRepository HotelRoomRepo = NinjectWebCommon.Kernel.Get<HotelRoomRepository>();
+            if (TamagotchiRepo.GetAllHomelessTamagotchi().Count == 0)
+            {
+                TempData["TamagotchiCount"] = "There are no tamagotchis to book! Remove tamagotchis from a hotelroom or start the night!";
+                return RedirectToAction("Index");
+            }
+            if(HotelRoomRepo.GetAllAvailableHotelRooms().Count == 0)
+            {
+                TempData["HotelRoomCount"] = "There are no hotelrooms available to book! Remove tamagotchis from a hotelroom or start the night!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index", "Booking");
         }
 
         public ActionResult StartNight()
