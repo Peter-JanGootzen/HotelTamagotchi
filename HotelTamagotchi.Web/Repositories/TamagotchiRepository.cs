@@ -54,6 +54,7 @@ namespace HotelTamagotchi.Web.Repositories
 
         public void SetChanged(TamagotchiViewModel entity)
         {
+            _database.SetChanged(entity.ToModel());
             _database.SaveChanges();
         }
 

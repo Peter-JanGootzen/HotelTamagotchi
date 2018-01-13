@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HotelTamagotchi.Web;
 using HotelTamagotchi.Web.Controllers;
+using HotelTamagotchi.Web.Repositories;
+using HotelTamagotchi.Web.Models;
 
 namespace HotelTamagotchi.Test.Controllers
 {
@@ -15,8 +17,12 @@ namespace HotelTamagotchi.Test.Controllers
         [TestMethod]
         public void Index()
         {
+            IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
+            ITamagotchiRepository tR = new TamagotchiRepository(c);
+            IHotelRoomRepository hR = new HotelRoomRepository(c);
+
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(hR, tR);
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
@@ -28,8 +34,12 @@ namespace HotelTamagotchi.Test.Controllers
         [TestMethod]
         public void About()
         {
+            IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
+            ITamagotchiRepository tR = new TamagotchiRepository(c);
+            IHotelRoomRepository hR = new HotelRoomRepository(c);
+
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(hR, tR); ;
 
             // Act
             ViewResult result = controller.About() as ViewResult;

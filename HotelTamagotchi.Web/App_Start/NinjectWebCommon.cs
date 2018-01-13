@@ -37,12 +37,6 @@ namespace HotelTamagotchi.Web.App_Start
             bootstrapper.ShutDown();
         }
 
-        public static StandardKernel Kernel
-        {
-            get => (StandardKernel)bootstrapper.Kernel;
-            private set { }
-        }
-
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -63,7 +57,6 @@ namespace HotelTamagotchi.Web.App_Start
             kernel.Bind<IHotelTamagotchiContext>().To<HotelTamagotchiContext>();
             kernel.Bind<ITamagotchiRepository>().To<TamagotchiRepository>();
             kernel.Bind<IHotelRoomRepository>().To<HotelRoomRepository>();
-            kernel.Bind<NightController>().ToSelf();
         }
     }
 }

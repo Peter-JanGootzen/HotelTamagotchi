@@ -76,7 +76,7 @@ namespace HotelTamagotchi.Web.ViewModels
                 errors.Add(new ValidationResult("The room has to be 2,3 or 5 spaces big!", size));
             }
 
-            if (Type != HotelRoomType.Workroom & Type != HotelRoomType.Fightroom & Type != HotelRoomType.Restroom & Type != HotelRoomType.Gameroom)
+            if (Type != HotelRoomType.Workroom & Type != HotelRoomType.Fightroom & Type != HotelRoomType.Restroom & Type != HotelRoomType.Gameroom & Type != HotelRoomType.Quidditch)
             {
                 errors.Add(new ValidationResult("The type of the room has to be 'Fightroom', 'Workroom', 'Restroom' or 'Gameroom'!", type));
             }

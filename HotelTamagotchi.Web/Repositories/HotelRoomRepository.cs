@@ -54,8 +54,10 @@ namespace HotelTamagotchi.Web.Repositories
 
         public void SetChanged(HotelRoomViewModel entity)
         {
+            _database.SetChanged(entity.ToModel());
             _database.SaveChanges();
         }
+
         public void Dispose()
         {
             _database.Dispose();
