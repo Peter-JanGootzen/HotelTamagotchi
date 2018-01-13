@@ -15,6 +15,14 @@ else if (TempData["NightWarning"] != null)
 {
     <div class="alert alert-warning alert-dismissable fade in">@TempData["NightWarning"]</div>
 }
+@if (TempData["TamagotchiCount"] != null)
+{
+    <div class="alert alert-warning alert-dismissable fade in">@TempData["TamagotchiCount"]</div>
+}
+@if (TempData["HotelRoomCount"] != null)
+{
+    <div class="alert alert-warning alert-dismissable fade in">@TempData["HotelRoomCount"]</div>
+}
 <div class="row">
     <div class="col-md-4">
         <h2>Tamagotchi</h2>
@@ -27,7 +35,7 @@ else if (TempData["NightWarning"] != null)
     <div class="col-md-4">
         <h2>Bookings</h2>
         <p>Book a room for your Tamagotchi!</p>
-        <button class="btn btn-default" onclick="location.href='@Url.Action("Index", "Booking")'">Make a Booking</button>
+        <button class="btn btn-default" onclick="location.href='@Url.Action("Book", "Home")'">Make a Booking</button>
     </div>
     <div class="col-md-4">
         <h2>Hotelrooms</h2>

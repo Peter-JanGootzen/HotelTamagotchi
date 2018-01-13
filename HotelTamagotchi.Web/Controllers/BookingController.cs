@@ -43,7 +43,7 @@ namespace HotelTamagotchi.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(Tuple.Create(hotelRoom, TamagotchiRepo.GetAll()));
+            return View(Tuple.Create(hotelRoom, TamagotchiRepo.GetAllHomelessTamagotchi()));
         }
         [HttpPost]
         public ActionResult Create(FormCollection formCollection, HotelRoomViewModel hotelroom)
@@ -51,9 +51,15 @@ namespace HotelTamagotchi.Web.Controllers
             hotelroom = HotelRoomRepo.Find(hotelroom.Id);
             List<TamagotchiViewModel> addToHotel = new List<TamagotchiViewModel>();
             int i = 0;
-            foreach(var t in TamagotchiRepo.GetAll())
+            foreach(var t in TamagotchiRepo.GetAllHomelessTamagotchi())
             {
-                if(i > (int)hotelroom.Size)
+                if(t.HotelRoomId != null)
+                {
+                    ModelState.AddModelError(string.Empty, "You cannot book a tamagotchi that already has a room");
+                    TempData["ViewData"] = ViewData;
+                    return RedirectToAction("Create");
+                }
+                if (i > (int)hotelroom.Size)
                 {
                     string sizeError = "You may only book " + (int)hotelroom.Size + " tamagotchis";
                     ModelState.AddModelError(string.Empty,sizeError);
@@ -78,6 +84,7 @@ namespace HotelTamagotchi.Web.Controllers
                 t.HotelRoomId = hotelroom.Id;
                 TamagotchiRepo.SetChanged(t);
             }
+            TempData["Success"] = "Succesfully created booking for hotelroom number: " + hotelroom.Id;
             return RedirectToAction("Index");
         }
     }
