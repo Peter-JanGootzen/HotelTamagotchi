@@ -112,39 +112,37 @@ namespace HotelTamagotchi.Web.ViewModels
 
             if (!String.IsNullOrWhiteSpace(Name))
             {
-                if (!String.IsNullOrWhiteSpace(Name))
+                if (Name.Length > 10)
                 {
-                    if (Name.Length > 10)
-                    {
-                        errors.Add(new ValidationResult("Your name can only be 10 letters long", pName));
-                    }
+                    errors.Add(new ValidationResult("Your name can only be 10 letters long", pName));
                 }
-                else
-                {
-                    errors.Add(new ValidationResult("You have to put in a name in the name field", pName));
-                }
-                if (Age < 0)
-                {
-                    errors.Add(new ValidationResult("You have to be atleast 0 days old", pAge));
-                }
-                if (Pennies < 0)
-                {
-                    errors.Add(new ValidationResult("You can not have a negative amount of pennies", pPennies));
-                }
-                if (Level < 0)
-                {
-                    errors.Add(new ValidationResult("You can not have a negative amount of levels", pLevel));
-                }
-                if (Health < 0 || Health > 100)
-                {
-                    errors.Add(new ValidationResult("Your health value must be between 0 and 100", pHealth));
-                }
-                if (Boredom < 0 || Boredom > 100)
-                {
-                    errors.Add(new ValidationResult("Your boredom value must be between 0 and 100", pBoredom));
-                }
-
-                return errors;
             }
+            else
+            {
+                errors.Add(new ValidationResult("You have to put in a name in the name field", pName));
+            }
+            if (Age < 0)
+            {
+                errors.Add(new ValidationResult("You have to be atleast 0 days old", pAge));
+            }
+            if (Pennies < 0)
+            {
+                errors.Add(new ValidationResult("You can not have a negative amount of pennies", pPennies));
+            }
+            if (Level < 0)
+            {
+                errors.Add(new ValidationResult("You can not have a negative amount of levels", pLevel));
+            }
+            if (Health < 0 || Health > 100)
+            {
+                errors.Add(new ValidationResult("Your health value must be between 0 and 100", pHealth));
+            }
+            if (Boredom < 0 || Boredom > 100)
+            {
+                errors.Add(new ValidationResult("Your boredom value must be between 0 and 100", pBoredom));
+            }
+
+            return errors;
         }
     }
+}
