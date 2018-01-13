@@ -60,7 +60,7 @@ namespace HotelTamagotchi.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<HotelTamagotchiEntities>().ToSelf();
+            kernel.Bind<IHotelTamagotchiContext>().To<HotelTamagotchiContext>();
             kernel.Bind<ITamagotchiRepository>().To<TamagotchiRepository>();
             kernel.Bind<IHotelRoomRepository>().To<HotelRoomRepository>();
             kernel.Bind<NightController>().ToSelf();

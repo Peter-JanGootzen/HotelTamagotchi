@@ -14,9 +14,9 @@ namespace HotelTamagotchi.Test.Controllers
         [TestMethod]
         public void BookingController_CreateBooking()
         {
-            HotelTamagotchiEntities d = new HotelTamagotchiEntities();
-            IHotelRoomRepository hr = new HotelRoomRepository(d);
-            ITamagotchiRepository tr = new TamagotchiRepository(d);
+            IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
+            IHotelRoomRepository hr = new HotelRoomRepository(c);
+            ITamagotchiRepository tr = new TamagotchiRepository(c);
             BookingController bc = new BookingController(hr, tr);
             FormCollection fc = new FormCollection();
             TamagotchiViewModel t = new TamagotchiViewModel()
