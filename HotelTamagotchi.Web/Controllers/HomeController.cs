@@ -1,4 +1,5 @@
 ﻿using HotelTamagotchi.Web.App_Start;
+using HotelTamagotchi.Web.Repositories;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,16 @@ namespace HotelTamagotchi.Web.Controllers
 {
     public class HomeController : Controller
     {
+
+        private IHotelRoomRepository _hotelRoomRepository;
+        private ITamagotchiRepository _tamagotchiRepository;
+
+        public HomeController(IHotelRoomRepository hotelRoomRepository, ITamagotchiRepository tamagotchiRepository)
+        {
+            _hotelRoomRepository = hotelRoomRepository;
+            _tamagotchiRepository = tamagotchiRepository;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -24,11 +35,8 @@ namespace HotelTamagotchi.Web.Controllers
 
         public ActionResult StartNight()
         {
-            NightController nC = NinjectWebCommon.Kernel.Get<NightController>();
-            if (nC.StartNight())
-                TempData["NightSuccess"] = "The night has been finished, go check in on your tamagotchi or book another room";
-            else
-                TempData["NightWarning"] = "No rooms are booked at the moment, go book a room for your Tamagotchi!";
+            NightController nC = new NightController(_tamagotchiRepository, _hotelRoomRepository);
+            TempData["NightSuccess"] = "The night has been finished, go check in on your tamagotchi or book another room";
             return Redirect(".");
         }
     }

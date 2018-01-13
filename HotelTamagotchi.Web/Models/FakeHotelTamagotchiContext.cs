@@ -59,6 +59,11 @@ namespace HotelTamagotchi.Web.Models
             disposed = true;
         }
 
+        public void SetChanged(BaseHotelTamagotchiEntity baseHotelTamagotchiEntity)
+        {
+            return;
+        }
+
         public int SaveChanges()
         {
             return 0;

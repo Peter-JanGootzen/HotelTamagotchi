@@ -12,6 +12,7 @@ namespace HotelTamagotchi.Web.Models
     {
         IDbSet<HotelRoom> HotelRoom { get; }
         IDbSet<Tamagotchi> Tamagotchi { get; }
+        void SetChanged(BaseHotelTamagotchiEntity baseHotelTamagotchiEntity);
         int SaveChanges();
     }
 }
