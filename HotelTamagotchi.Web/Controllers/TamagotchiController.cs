@@ -59,11 +59,6 @@ namespace HotelTamagotchi.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                tamagotchi.Age = 0;
-                tamagotchi.Boredom = 0;
-                tamagotchi.Health = 100;
-                tamagotchi.Level = 0;
-                tamagotchi.Pennies = 100;
                 TamagotchiRepo.Add(tamagotchi);
                 return RedirectToAction("Index");
             }
