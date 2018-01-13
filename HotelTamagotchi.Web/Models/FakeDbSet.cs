@@ -7,55 +7,55 @@ using System.Web;
 
 namespace HotelTamagotchi.Web.Models
 {
-    public abstract class FakeDbSet<TEnity> : IDbSet<TEnity>
-    where TEnity : class
+    public abstract class FakeDbSet<TEntity> : IDbSet<TEntity>
+    where TEntity : class
     {
-        ObservableCollection<TEnity> _data;
+        ObservableCollection<TEntity> _data;
         IQueryable _query;
 
         public FakeDbSet()
         {
-            _data = new ObservableCollection<TEnity>();
+            _data = new ObservableCollection<TEntity>();
             _query = _data.AsQueryable();
         }
 
-        public abstract TEnity Find(params object[] keyValues);
+        public abstract TEntity Find(params object[] keyValues);
 
-        public TEnity Add(TEnity item)
+        public TEntity Add(TEntity item)
         {
             _data.Add(item);
             return item;
         }
 
-        public TEnity Remove(TEnity item)
+        public TEntity Remove(TEntity item)
         {
             _data.Remove(item);
             return item;
         }
 
-        public TEnity Attach(TEnity item)
+        public TEntity Attach(TEntity item)
         {
             _data.Add(item);
             return item;
         }
 
-        public TEnity Detach(TEnity item)
+        public TEntity Detach(TEntity item)
         {
             _data.Remove(item);
             return item;
         }
 
-        public TEnity Create()
+        public TEntity Create()
         {
-            return Activator.CreateInstance<TEnity>();
+            return Activator.CreateInstance<TEntity>();
         }
 
-        public TDerivedEntity Create<TDerivedEntity>() where TDerivedEntity : class, TEnity
+        public TDerivedEntity Create<TDerivedEntity>() where TDerivedEntity : class, TEntity
         {
             return Activator.CreateInstance<TDerivedEntity>();
         }
 
-        public ObservableCollection<TEnity> Local
+        public ObservableCollection<TEntity> Local
         {
             get { return _data; }
         }
@@ -80,7 +80,7 @@ namespace HotelTamagotchi.Web.Models
             return _data.GetEnumerator();
         }
 
-        IEnumerator<TEnity> IEnumerable<TEnity>.GetEnumerator()
+        IEnumerator<TEntity> IEnumerable<TEntity>.GetEnumerator()
         {
             return _data.GetEnumerator();
         }
