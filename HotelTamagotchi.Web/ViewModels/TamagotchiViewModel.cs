@@ -14,9 +14,14 @@ namespace HotelTamagotchi.Web.ViewModels
 
         public TamagotchiViewModel()
         {
-            _model = new Tamagotchi();
-            if (_model != null)
-                _hotelRoomViewModel = new HotelRoomViewModel(_model.HotelRoom);
+            _model = new Tamagotchi()
+            {
+                Age = 0,
+                Boredom = 0,
+                Health = 100,
+                Level = 0,
+                Pennies = 100
+            };
         }
 
         public TamagotchiViewModel(Tamagotchi tamagotchi)
@@ -25,7 +30,6 @@ namespace HotelTamagotchi.Web.ViewModels
             if (_model.HotelRoom != null)
                 _hotelRoomViewModel = new HotelRoomViewModel(_model.HotelRoom);
         }
-
 
         #region Properties
         public String Name
