@@ -114,32 +114,32 @@ namespace HotelTamagotchi.Web.ViewModels
             {
                 if (Name.Length > 10)
                 {
-                    errors.Add(new ValidationResult("Je naam mag maximaal 10 letters bevatten!", pName));
+                    errors.Add(new ValidationResult("Your name can only be 10 letters long", pName));
                 }
             }
             else
             {
-                errors.Add(new ValidationResult("Je moet een naam invullen!", pName));
+                errors.Add(new ValidationResult("You have to put in a name in the name field", pName));
             }
             if (Age < 0)
             {
-                errors.Add(new ValidationResult("Je moet minimaal een leeftijd hebben van 0", pAge));
+                errors.Add(new ValidationResult("You have to be atleast 0 days old", pAge));
             }
             if (Pennies < 0)
             {
-                errors.Add(new ValidationResult("Je moet minimaal 0 of meer centjes hebben!", pPennies));
+                errors.Add(new ValidationResult("You can not have a negative amount of pennies", pPennies));
             }
             if (Level < 0)
             {
-                errors.Add(new ValidationResult("Je moet minimaal een level hebben van 0 of meer!", pLevel));
+                errors.Add(new ValidationResult("You can not have a negative amount of levels", pLevel));
             }
             if (Health < 0 || Health > 100)
             {
-                errors.Add(new ValidationResult("Je levens moet mininmaal tussen 0 en de 100 liggen", pHealth));
+                errors.Add(new ValidationResult("Your health value must be between 0 and 100", pHealth));
             }
             if (Boredom < 0 || Boredom > 100)
             {
-                errors.Add(new ValidationResult("Je verveling moet mininmaal tussen 0 en de 100 liggen", pBoredom));
+                errors.Add(new ValidationResult("Your boredom value must be between 0 and 100", pBoredom));
             }
 
             return errors;
