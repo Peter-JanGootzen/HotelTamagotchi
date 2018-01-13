@@ -7,15 +7,13 @@ namespace HotelTamagotchi.Web.Models
     using System.Data.Entity.Spatial;
 
     [Table("HotelRoom")]
-    public partial class HotelRoom
+    public partial class HotelRoom : BaseHotelTamagotchiEntity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HotelRoom()
         {
             Tamagotchi = new HashSet<Tamagotchi>();
         }
-
-        public int Id { get; set; }
 
         public byte Size { get; set; }
 
