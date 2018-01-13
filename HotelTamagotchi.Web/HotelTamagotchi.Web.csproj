@@ -213,10 +213,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BaseHotelTamagotchiEntity.cs" />
     <Compile Include="Models\FakeDbSet.cs" />
-    <Compile Include="Models\FakeHotelRoomSet.cs" />
     <Compile Include="Models\FakeHotelTamagotchiContext.cs" />
-    <Compile Include="Models\FakeTamagotchiSet.cs" />
     <Compile Include="Models\HotelRoom.cs" />
     <Compile Include="Models\HotelRoomType.cs" />
     <Compile Include="Models\HotelTamagotchiContext.cs" />
