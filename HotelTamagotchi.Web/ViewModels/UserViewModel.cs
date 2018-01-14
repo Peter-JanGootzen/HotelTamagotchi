@@ -17,10 +17,10 @@ namespace HotelTamagotchi.Web.ViewModels
         }
 
         [Required]
-        public string UserName
+        public string Username
         {
-            get => _user.UserName;
-            set => _user.UserName = value;
+            get => _user.Username;
+            set => _user.Username = value;
         }
 
         [Required]

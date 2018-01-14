@@ -27,6 +27,12 @@ namespace HotelTamagotchi.Web.Models
             modelBuilder.Entity<Tamagotchi>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
+            modelBuilder.Entity<Tamagotchi>()
+                .Property(e => e.OwnerUsername)
+                .IsUnicode(false);
+            modelBuilder.Entity<User>()
+                .Property(e => e.Username)
+                .IsUnicode(false);
         }
     }
 }
