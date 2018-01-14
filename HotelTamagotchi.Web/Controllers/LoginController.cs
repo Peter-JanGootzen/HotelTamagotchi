@@ -44,9 +44,11 @@ namespace HotelTamagotchi.Web.Controllers
             }
             else
             {
-                _userRepository.Add(new UserViewModel() { Username = username, Password = password, Role = role});
-                Session["User"] = username;
-                Session["Role"] = username;
+                UserViewModel user = new UserViewModel() { Username = username, Password = password, Role = role };
+                _userRepository.Add(user);
+                Session["UserId"] = user.Id;
+                Session["User"] = user.Username;
+                Session["Role"] = user.Role;
                 Session["Password"] = "Hunter2";
                 TempData["LoggedIn"] = "Successfully registered, you are now logged in!";
                 return RedirectToAction("Index", "Home");
