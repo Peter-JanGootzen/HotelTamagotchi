@@ -10,7 +10,8 @@ namespace HotelTamagotchi.Web.Models
     public partial class Tamagotchi : BaseHotelTamagotchiEntity
     {
         public int? HotelRoomId { get; set; }
-        public string OwnerUsername { get; set; }
+
+        public int UserId { get; set; }
 
         public string Name { get; set; }
 
@@ -27,7 +28,7 @@ namespace HotelTamagotchi.Web.Models
         public bool Alive { get; set; }
 
         public virtual HotelRoom HotelRoom { get; set; }
-        public virtual User Owner { get; set; }
+        public virtual User User { get; set; }
 
         
     }

@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	[HotelRoomId] INT,
-	[OwnerUsername] VARCHAR(20) NOT NULL,
+	[UserId] INT NOT NULL,
 	[Name] VARCHAR(10) NOT NULL,
 	[Pennies] INT NOT NULL,
 	[Age] INT NOT NULL,
@@ -15,7 +15,7 @@
 				ON UPDATE CASCADE
 				ON DELETE SET NULL,
 
-	CONSTRAINT FK_Tamgotchi_OwnerUsername FOREIGN KEY ([OwnerUsername]) REFERENCES [User] ([Username])
+	CONSTRAINT FK_Tamgotchi_User FOREIGN KEY ([UserId]) REFERENCES [User] ([Id])
 				ON UPDATE CASCADE
 				ON DELETE CASCADE,
 )
