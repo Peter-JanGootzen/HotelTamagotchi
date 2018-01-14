@@ -1,4 +1,5 @@
 ﻿using HotelTamagotchi.Web.Models;
+using HotelTamagotchi.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace HotelTamagotchi.Web.Repositories
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository : IRepository<UserViewModel>
     {
         IHotelTamagotchiContext _context;
 
@@ -15,9 +16,9 @@ namespace HotelTamagotchi.Web.Repositories
             _context = context;
         }
 
-        public void Add(User entity)
+        public void Add(UserViewModel entity)
         {
-            _context.User.Add(entity);
+            _context.User.Add(entity.ToModel());
             _context.SaveChanges();
         }
 
@@ -26,25 +27,35 @@ namespace HotelTamagotchi.Web.Repositories
             _context.Dispose();
         }
 
-        public User Find(object id)
+        public UserViewModel Find(object id)
         {
-            return _context.User.Find(id);
+            return new UserViewModel(_context.User.Find(id));
         }
 
-        public List<User> GetAll()
+        public List<UserViewModel> GetAll()
         {
-            return _context.User.ToList();
+            List<UserViewModel> list = new List<UserViewModel>();
+            foreach (User u in _context.User)
+            {
+                list.Add(new UserViewModel(u));
+            }
+            return list;
         }
 
-        public void Remove(User entity)
+        public UserViewModel Authenticate(string username, string password)
         {
-            _context.User.Remove(entity);
+            return new UserViewModel(_context.User.Where(x => x.Username.Equals(username) && x.Password.Equals(password)).FirstOrDefault());
+        }
+
+        public void Remove(UserViewModel entity)
+        {
+            _context.User.Remove(entity.ToModel());
             _context.SaveChanges();
         }
 
-        public void SetChanged(User entity)
+        public void SetChanged(UserViewModel entity)
         {
-            _context.SetChanged(entity);
+            _context.SetChanged(entity.ToModel());
             _context.SaveChanges();
         }
     }

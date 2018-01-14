@@ -6,7 +6,14 @@
     <h1>HotelTamagotchi</h1>
     <p class="lead"><button type="button" class="btn btn-default" onclick="location.href='@Url.Action("StartNight", "Home")'" )>Start Night!</button></p>
 </div>
-
+@if (TempData["LoggedIn"] != null)
+{
+    <div class="alert alert-success alert-dismissable fade in">@TempData["LoggedIn"]</div>
+}
+@if (TempData["Logout"] != null)
+{
+    <div class="alert alert-success alert-dismissable fade in">@TempData["Logout"]</div>
+}
 @if (TempData["NightSuccess"] != null)
 {
     <div class="alert alert-success alert-dismissable fade in">@TempData["NightSuccess"]</div>
@@ -19,6 +26,7 @@
 {
     <div class="alert alert-warning alert-dismissable fade in">@TempData["HotelRoomCount"]</div>
 }
+
 <div class="row">
     <div class="col-md-4">
         <h2>Tamagotchi</h2>

@@ -18,7 +18,7 @@ namespace HotelTamagotchi.Web.Models
         {
             _hotelRoom = new FakeDbSet<HotelRoom>();
             _tamagotchi = new FakeDbSet<Tamagotchi>();
-            _user = new FakeDbSet<User>();
+            //_user = new FakeDbSet<User>();
         }
         public IDbSet<HotelRoom> HotelRoom
         {

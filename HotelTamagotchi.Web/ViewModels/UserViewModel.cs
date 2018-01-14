@@ -9,32 +9,42 @@ namespace HotelTamagotchi.Web.ViewModels
 {
     public class UserViewModel
     {
-        User _user;
+        User _model;
+
+        public UserViewModel()
+        {
+            _model = new User();
+        }
 
         public UserViewModel(User user)
         {
-            _user = user;
+            _model = user;
         }
 
         [Required]
         public string Username
         {
-            get => _user.Username;
-            set => _user.Username = value;
+            get => _model.Username;
+            set => _model.Username = value;
         }
 
         [Required]
         [DataType(DataType.Password)]
         public string Password
         {
-            get => _user.Password;
-            set => _user.Password = value;
+            get => _model.Password;
+            set => _model.Password = value;
         }
 
         public UserRole Role
         {
-            get => _user.Role;
+            get => _model.Role;
             private set { }
+        }
+
+        public User ToModel()
+        {
+            return _model;
         }
     }
 }
