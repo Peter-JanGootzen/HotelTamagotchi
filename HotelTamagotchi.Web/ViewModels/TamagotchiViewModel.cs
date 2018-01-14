@@ -93,7 +93,10 @@ namespace HotelTamagotchi.Web.ViewModels
             }
             set
             {
-                _model.HotelRoom = value.ToModel();
+                if (value != null)
+                    _model.HotelRoom = value.ToModel();
+                else
+                    _model.HotelRoom = null;
             }
         }
 
@@ -108,7 +111,10 @@ namespace HotelTamagotchi.Web.ViewModels
             }
             set
             {
-                _model.User = value.ToModel();
+                if (value != null)
+                    _model.User = value.ToModel();
+                else
+                    _model.User = null;
             }
         }
         #endregion
