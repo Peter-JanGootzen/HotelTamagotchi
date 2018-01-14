@@ -64,11 +64,13 @@
   <ItemGroup>
     <Build Include="Tables\Tamagotchi.sql" />
     <Build Include="Tables\HotelRoom.sql" />
+    <Build Include="Tables\User.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Seed\HotelRoom.sql" />
     <None Include="Scripts\Seed\Tamagotchi.sql" />
     <None Include="HotelTamagotchi.Database.publish.xml" />
+    <None Include="Scripts\Seed\User.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />

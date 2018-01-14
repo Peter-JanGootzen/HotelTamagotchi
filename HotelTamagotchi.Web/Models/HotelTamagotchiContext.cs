@@ -15,6 +15,7 @@ namespace HotelTamagotchi.Web.Models
 
         public virtual IDbSet<HotelRoom> HotelRoom { get; set; }
         public virtual IDbSet<Tamagotchi> Tamagotchi { get; set; }
+        public virtual IDbSet<User> User { get; set; }
 
         public void SetChanged(BaseHotelTamagotchiEntity baseHotelTamagotchiEntity)
         {

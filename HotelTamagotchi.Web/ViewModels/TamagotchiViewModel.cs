@@ -32,6 +32,7 @@ namespace HotelTamagotchi.Web.ViewModels
         }
 
         #region Properties
+        [Required]
         public String Name
         {
             get => _model.Name;
