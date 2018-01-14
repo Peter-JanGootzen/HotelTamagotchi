@@ -45,6 +45,16 @@ namespace HotelTamagotchi.Web.Controllers
         // GET: HotelRoom/Create
         public ActionResult Create()
         {
+            if (Session["User"] == null)
+            {
+                TempData["NotLoggedIn"] = "Please login or register to continue!";
+                return RedirectToAction("Index", "Home");
+            }
+            if (!Session["Role"].Equals(UserRole.Staff))
+            {
+                TempData["NotAuthorized"] = "You are not authorized to perform these actions!";
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -55,6 +65,16 @@ namespace HotelTamagotchi.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Size,Type")] HotelRoomViewModel hotelRoom)
         {
+            if (Session["User"] == null)
+            {
+                TempData["NotLoggedIn"] = "Please login or register to continue!";
+                return RedirectToAction("Index", "Home");
+            }
+            if (!Session["Role"].Equals(UserRole.Staff))
+            {
+                TempData["NotAuthorized"] = "You are not authorized to perform these actions!";
+                return RedirectToAction("Index", "Home");
+            }
             if (ModelState.IsValid)
             {
                 HotelRoomRepo.Add(hotelRoom);
@@ -67,6 +87,16 @@ namespace HotelTamagotchi.Web.Controllers
         // GET: HotelRoom/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["User"] == null)
+            {
+                TempData["NotLoggedIn"] = "Please login or register to continue!";
+                return RedirectToAction("Index", "Home");
+            }
+            if (!Session["Role"].Equals(UserRole.Staff))
+            {
+                TempData["NotAuthorized"] = "You are not authorized to perform these actions!";
+                return RedirectToAction("Index", "Home");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -94,6 +124,16 @@ namespace HotelTamagotchi.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Size,Type")] HotelRoomViewModel hotelRoom)
         {
+            if (Session["User"] == null)
+            {
+                TempData["NotLoggedIn"] = "Please login or register to continue!";
+                return RedirectToAction("Index", "Home");
+            }
+            if (!Session["Role"].Equals(UserRole.Staff))
+            {
+                TempData["NotAuthorized"] = "You are not authorized to perform these actions!";
+                return RedirectToAction("Index", "Home");
+            }
             if (ModelState.IsValid)
             {
                 HotelRoomRepo.SetChanged(hotelRoom);
@@ -105,6 +145,16 @@ namespace HotelTamagotchi.Web.Controllers
         // GET: HotelRoom/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["User"] == null)
+            {
+                TempData["NotLoggedIn"] = "Please login or register to continue!";
+                return RedirectToAction("Index", "Home");
+            }
+            if (!Session["Role"].Equals(UserRole.Staff))
+            {
+                TempData["NotAuthorized"] = "You are not authorized to perform these actions!";
+                return RedirectToAction("Index", "Home");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -122,6 +172,16 @@ namespace HotelTamagotchi.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["User"] == null)
+            {
+                TempData["NotLoggedIn"] = "Please login or register to continue!";
+                return RedirectToAction("Index", "Home");
+            }
+            if (!Session["Role"].Equals(UserRole.Staff))
+            {
+                TempData["NotAuthorized"] = "You are not authorized to perform these actions!";
+                return RedirectToAction("Index", "Home");
+            }
             HotelRoomViewModel hotelRoom = HotelRoomRepo.Find(id);
             HotelRoomRepo.Remove(hotelRoom);
             return RedirectToAction("Index");

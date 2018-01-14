@@ -6,9 +6,17 @@
     <h1>HotelTamagotchi</h1>
     <p class="lead"><button type="button" class="btn btn-default" onclick="location.href='@Url.Action("StartNight", "Home")'" )>Start Night!</button></p>
 </div>
+@if (TempData["NotLoggedIn"] != null)
+{
+    <div class="alert alert-warning alert-dismissable fade in">@TempData["NotLoggedIn"]</div>
+}
 @if (TempData["LoggedIn"] != null)
 {
     <div class="alert alert-success alert-dismissable fade in">@TempData["LoggedIn"]</div>
+}
+@if (TempData["NotAuthorized"] != null)
+{
+    <div class="alert alert-warning alert-dismissable fade in">@TempData["NotAuthorized"]</div>
 }
 @if (TempData["Logout"] != null)
 {
