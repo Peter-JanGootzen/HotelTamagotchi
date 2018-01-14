@@ -57,6 +57,8 @@ namespace HotelTamagotchi.Web.App_Start
             kernel.Bind<IHotelTamagotchiContext>().To<HotelTamagotchiContext>();
             kernel.Bind<ITamagotchiRepository>().To<TamagotchiRepository>();
             kernel.Bind<IHotelRoomRepository>().To<HotelRoomRepository>();
+            kernel.Bind<IUserRepository>().To<UserRepository>();
+
         }
     }
 }

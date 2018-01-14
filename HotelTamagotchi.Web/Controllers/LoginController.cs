@@ -1,4 +1,5 @@
-﻿using HotelTamagotchi.Web.Repositories;
+﻿using HotelTamagotchi.Web.Models;
+using HotelTamagotchi.Web.Repositories;
 using HotelTamagotchi.Web.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace HotelTamagotchi.Web.Controllers
 {
     public class LoginController : Controller
     {
-        UserRepository _userRepository;
+        IUserRepository _userRepository;
 
-        public LoginController(UserRepository userRepository)
+        public LoginController(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
@@ -20,7 +21,36 @@ namespace HotelTamagotchi.Web.Controllers
         // GET: Login
         public ActionResult Register()
         {
+            if (TempData["ViewData"] != null)
+            {
+                ViewData = (ViewDataDictionary)TempData["ViewData"];
+            }
             return View();
+        }
+        [HttpPost]
+        public ActionResult Register(string username, string password, UserRole role)
+        {
+            if(!_userRepository.Exists(username))
+            {
+                ModelState.AddModelError(String.Empty, "This username already exists!");
+                TempData["ViewData"] = ViewData;
+                return RedirectToAction("Register");
+            }
+            if(role != UserRole.Customer & role != UserRole.Staff)
+            {
+                ModelState.AddModelError(String.Empty, "Please select customer or role as type");
+                TempData["ViewData"] = ViewData;
+                return RedirectToAction("Register");
+            }
+            else
+            {
+                _userRepository.Add(new UserViewModel() { Username = username, Password = password, Role = role});
+                Session["User"] = username;
+                Session["Role"] = username;
+                Session["Password"] = "Hunter2";
+                TempData["LoggedIn"] = "Successfully registered, you are now logged in!";
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public ActionResult Login()

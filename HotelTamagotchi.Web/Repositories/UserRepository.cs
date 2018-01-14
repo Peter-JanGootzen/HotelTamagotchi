@@ -7,7 +7,7 @@ using System.Web;
 
 namespace HotelTamagotchi.Web.Repositories
 {
-    public class UserRepository : IRepository<UserViewModel>
+    public class UserRepository : IRepository<UserViewModel>, IUserRepository
     {
         IHotelTamagotchiContext _context;
 
@@ -30,6 +30,12 @@ namespace HotelTamagotchi.Web.Repositories
         public UserViewModel Find(object id)
         {
             return new UserViewModel(_context.User.Find(id));
+        }
+
+        public bool Exists(string username)
+        {
+            User user = _context.User.Where(x => x.Username.Equals(username)).FirstOrDefault();
+            return user == null;
         }
 
         public List<UserViewModel> GetAll()

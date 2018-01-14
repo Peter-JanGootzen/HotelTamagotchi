@@ -39,7 +39,7 @@ namespace HotelTamagotchi.Web.ViewModels
         public UserRole Role
         {
             get => _model.Role;
-            private set { }
+            set => _model.Role = value;
         }
 
         public User ToModel()
