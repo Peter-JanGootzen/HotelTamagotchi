@@ -42,6 +42,11 @@ namespace HotelTamagotchi.Web.Repositories
             return list;
         }
 
+        public List<TamagotchiViewModel> GetAllFromUser(int userId)
+        {
+            return GetAll().Where(x => x.UserId == userId).ToList();
+        }
+
         public List<TamagotchiViewModel> GetAllHomelessTamagotchi()
         {
             return GetAll().Where(t => t.HotelRoom == null).ToList();

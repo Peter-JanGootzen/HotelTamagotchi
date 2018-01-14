@@ -19,7 +19,7 @@ namespace HotelTamagotchi.Web.Models
 
         public void SetChanged(BaseHotelTamagotchiEntity baseHotelTamagotchiEntity)
         {
-            this.Entry(baseHotelTamagotchiEntity).State = EntityState.Modified;
+            Entry(baseHotelTamagotchiEntity).State = EntityState.Modified;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

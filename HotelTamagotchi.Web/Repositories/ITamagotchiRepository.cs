@@ -11,5 +11,6 @@ namespace HotelTamagotchi.Web.Repositories
     public interface ITamagotchiRepository : IRepository<TamagotchiViewModel>
     {
         List<TamagotchiViewModel> GetAllHomelessTamagotchi();
+        List<TamagotchiViewModel> GetAllFromUser(int userId);
     }
 }

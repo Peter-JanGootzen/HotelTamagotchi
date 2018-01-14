@@ -5,7 +5,10 @@
 }
 
 <h2>Index</h2>
-
+@if (TempData["NotAuthorized"] != null)
+{
+    <div class="alert alert-warning alert-dismissable fade in">@TempData["NotAuthorized"]</div>
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
