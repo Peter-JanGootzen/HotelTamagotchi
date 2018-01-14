@@ -9,8 +9,11 @@ namespace HotelTamagotchi.Web.Models
     [Table("Tamagotchi")]
     public partial class Tamagotchi : BaseHotelTamagotchiEntity
     {
+        [ForeignKey("HotelRoom")]
         public int? HotelRoomId { get; set; }
 
+        [Required]
+        [ForeignKey("User")]
         public int UserId { get; set; }
 
         public string Name { get; set; }

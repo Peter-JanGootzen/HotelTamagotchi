@@ -114,7 +114,7 @@ namespace HotelTamagotchi.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,HotelRoomId,Name,Age,Pennies,Level,Health,Boredom,Alive")] TamagotchiViewModel tamagotchi)
+        public ActionResult Edit(TamagotchiViewModel tamagotchi)
         {
             if (Session["User"] == null)
             {
