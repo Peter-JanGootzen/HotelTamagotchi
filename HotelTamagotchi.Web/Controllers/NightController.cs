@@ -21,10 +21,8 @@ namespace HotelTamagotchi.Web.Controllers
             _hotelRoomRepository = hotelRoomRepository;
         }
 
-        public bool StartNight()
+        public void StartNight()
         {
-            if (_hotelRoomRepository.GetAllAvailableHotelRooms().FirstOrDefault() != null) // If no rooms are booked
-                return false;
             foreach (TamagotchiViewModel t in _tamagotchiRepository.GetAll())
             {
                 if (t.HotelRoom != null)
@@ -104,10 +102,38 @@ namespace HotelTamagotchi.Web.Controllers
                         }
                         h.Tamagotchi[i].LeaveRoom();
                     }
-                    _hotelRoomRepository.SetChanged(h);
                 }
+                else if (h.Type == HotelRoomType.Quidditch)
+                {
+                    Random r = new Random(DateTime.Now.GetHashCode());
+                    bool snitchAlreadyCatched = false;
+                    foreach (TamagotchiViewModel t in h.Tamagotchi)
+                    {
+                        bool scored = r.Next(0, 100) > 60;
+                        bool damaged = r.Next(0, 100) > 30;
+                        bool catchedSnitch = false;
+                        if (snitchAlreadyCatched == false)
+                            catchedSnitch = r.Next(0, 100) > 5;
+
+                        if (scored)
+                        {
+                            t.Pennies += 10;
+                            t.Level++;
+                        }
+                        if (damaged)
+                        {
+                            t.Health -= 30;
+                        }
+                        if (catchedSnitch)
+                        {
+                            t.Pennies += 150;
+                            t.Level++;
+                        }
+                        t.LeaveRoom();
+                    }
+                }
+                _hotelRoomRepository.SetChanged(h);
             }
-            return true;
         }
     }
 }

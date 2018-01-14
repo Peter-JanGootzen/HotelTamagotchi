@@ -7,10 +7,8 @@ namespace HotelTamagotchi.Web.Models
     using System.Data.Entity.Spatial;
 
     [Table("Tamagotchi")]
-    public partial class Tamagotchi
+    public partial class Tamagotchi : BaseHotelTamagotchiEntity
     {
-        public int Id { get; set; }
-
         public int? HotelRoomId { get; set; }
 
         public string Name { get; set; }

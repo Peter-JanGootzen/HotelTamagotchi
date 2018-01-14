@@ -9,22 +9,19 @@
 @using (Html.BeginForm("Create", "Booking", FormMethod.Post))
 {
     <div class="row">
-        @{int y = 0;
-            foreach (var t in Model.Item2)
-            {
-
-                <div class="col-md-4">
-                    @Html.Label(t.Name)
-                    @{string id = t.Id + "";}
-                    @Html.CheckBox(id)
-                    @{y = y + 1;}
-                </div>
-            }
-        }
+        @foreach (var t in Model.Item2)
+        {
+            <div class="col-md-4">
+                @t.Name
+                @{string id = t.Id + "";}
+                @Html.CheckBox(id)
+            </div>
+         
+         }
     </div>
 
-    <button type="submit">Book</button>
-}
+    <button class="btn btn-default" type="submit">Book</button>
+ }
 
 <div>
     @Html.ActionLink("Back to List", "Index")

@@ -15,8 +15,8 @@ namespace HotelTamagotchi.Web.Models
 
         public FakeHotelTamagotchiContext()
         {
-            _hotelRoom = new FakeHotelRoomSet();
-            _tamagotchi = new FakeTamagotchiSet();
+            _hotelRoom = new FakeDbSet<HotelRoom>();
+            _tamagotchi = new FakeDbSet<Tamagotchi>();
         }
         public IDbSet<HotelRoom> HotelRoom
         {
@@ -57,6 +57,11 @@ namespace HotelTamagotchi.Web.Models
         public void Dispose()
         {
             disposed = true;
+        }
+
+        public void SetChanged(BaseHotelTamagotchiEntity baseHotelTamagotchiEntity)
+        {
+            return;
         }
 
         public int SaveChanges()

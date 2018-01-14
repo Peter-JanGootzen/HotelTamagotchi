@@ -4,6 +4,7 @@ namespace HotelTamagotchi.Web.Models
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using System.Data.Entity.Infrastructure;
 
     public partial class HotelTamagotchiContext : DbContext, IHotelTamagotchiContext
     {
@@ -14,6 +15,11 @@ namespace HotelTamagotchi.Web.Models
 
         public virtual IDbSet<HotelRoom> HotelRoom { get; set; }
         public virtual IDbSet<Tamagotchi> Tamagotchi { get; set; }
+
+        public void SetChanged(BaseHotelTamagotchiEntity baseHotelTamagotchiEntity)
+        {
+            this.Entry(baseHotelTamagotchiEntity).State = EntityState.Modified;
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

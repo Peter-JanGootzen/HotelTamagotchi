@@ -32,5 +32,16 @@ namespace HotelTamagotchi.Test.Models
             //assert
             Assert.AreEqual(0, errors.Count());
         }
+
+        [TestMethod]
+        public void Hotelroom_invalid_validation()
+        {
+            //arrange
+            HotelRoomViewModel h = new HotelRoomViewModel() { Size = 4, Type = HotelRoomType.Gameroom };
+            //act
+            var errors = h.Validate(null);
+            //assert
+            Assert.AreEqual(1, errors.Count());
+        }
     }
 }
