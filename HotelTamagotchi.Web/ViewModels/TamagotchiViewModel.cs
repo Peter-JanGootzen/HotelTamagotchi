@@ -11,6 +11,7 @@ namespace HotelTamagotchi.Web.ViewModels
     {
         Tamagotchi _model;
         HotelRoomViewModel _hotelRoomViewModel;
+        UserViewModel _userViewModel;
 
         public TamagotchiViewModel()
         {
@@ -48,6 +49,11 @@ namespace HotelTamagotchi.Web.ViewModels
         {
             get => _model.HotelRoomId;
             set => _model.HotelRoomId = value;
+        }
+        public int UserId
+        {
+            get => _model.UserId;
+            set => _model.UserId = value;
         }
         public int Pennies
         {
@@ -90,6 +96,19 @@ namespace HotelTamagotchi.Web.ViewModels
                     _model.HotelRoom = null;
                 else
                     _model.HotelRoom = value.ToModel();
+            }
+        }
+
+        public UserViewModel User
+        {
+            get => _userViewModel;
+            set
+            {
+                _userViewModel = value;
+                if (value == null)
+                    _model.User = null;
+                else
+                    _model.User = value.ToModel();
             }
         }
         #endregion

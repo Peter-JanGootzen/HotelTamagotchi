@@ -21,6 +21,12 @@ namespace HotelTamagotchi.Web.ViewModels
             _model = user;
         }
 
+        public int Id
+        {
+            get => _model.Id;
+            set => _model.Id = value;
+        }
+
         [Required]
         public string Username
         {

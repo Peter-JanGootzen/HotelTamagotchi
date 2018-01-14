@@ -61,6 +61,7 @@ namespace HotelTamagotchi.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
             NightController nC = new NightController(_tamagotchiRepository, _hotelRoomRepository);
+            nC.StartNight();
             TempData["NightSuccess"] = "The night has been finished, go check in on your tamagotchi or book another room";
             return Redirect(".");
         }

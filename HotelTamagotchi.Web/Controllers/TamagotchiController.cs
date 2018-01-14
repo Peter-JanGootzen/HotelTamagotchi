@@ -68,11 +68,13 @@ namespace HotelTamagotchi.Web.Controllers
                 TempData["NotLoggedIn"] = "Please login or register to continue!";
                 return RedirectToAction("Index", "Home");
             }
-            if (!Session["Role"].Equals(UserRole.Customer))
+            else if (!Session["Role"].Equals(UserRole.Customer))
             {
                 TempData["NotAuthorized"] = "You are not authorized to perform these actions!";
                 return RedirectToAction("Index", "Home");
             }
+
+            tamagotchi.UserId = (int)Session["UserId"];
             if (ModelState.IsValid)
             {
                 TamagotchiRepo.Add(tamagotchi);

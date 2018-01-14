@@ -68,6 +68,7 @@ namespace HotelTamagotchi.Web.Controllers
             }
             else
             {
+                Session["UserId"] = user.Id;
                 Session["User"] = user.Username;
                 Session["Role"] = user.Role;
                 Session["Password"] = "Hunter2";
