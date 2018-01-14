@@ -29,6 +29,7 @@ namespace HotelTamagotchi.Test.Controllers
             TamagotchiViewModel t = new TamagotchiViewModel()
             {
                 Name = "Test",
+                Alive = true,
                 HotelRoom = h,
                 HotelRoomId = h.Id,
                 Boredom = 50
@@ -59,6 +60,7 @@ namespace HotelTamagotchi.Test.Controllers
             TamagotchiViewModel t = new TamagotchiViewModel()
             {
                 Name = "Test",
+                Alive = true,
                 HotelRoom = h,
                 HotelRoomId = h.Id,
                 Boredom = 0,
@@ -67,6 +69,7 @@ namespace HotelTamagotchi.Test.Controllers
             TamagotchiViewModel t2 = new TamagotchiViewModel()
             {
                 Name = "Test2",
+                Alive = true,
                 HotelRoom = h,
                 HotelRoomId = h.Id,
                 Boredom = 100,
@@ -105,6 +108,7 @@ namespace HotelTamagotchi.Test.Controllers
             TamagotchiViewModel t = new TamagotchiViewModel()
             {
                 Name = "Test",
+                Alive = true,
                 HotelRoom = h,
                 HotelRoomId = h.Id,
                 Boredom = 0,
@@ -113,6 +117,7 @@ namespace HotelTamagotchi.Test.Controllers
             TamagotchiViewModel t2 = new TamagotchiViewModel()
             {
                 Name = "Test2",
+                Alive = true,
                 HotelRoom = h,
                 HotelRoomId = h.Id,
                 Boredom = 100,
@@ -140,10 +145,12 @@ namespace HotelTamagotchi.Test.Controllers
             TamagotchiViewModel t = new TamagotchiViewModel()
             {
                 Name = "Test",
+                Alive = true
             };
             TamagotchiViewModel t2 = new TamagotchiViewModel()
             {
                 Name = "Test2",
+                Alive = true,
                 Health = 10,
             };
             tR.Add(t);

@@ -140,6 +140,7 @@ namespace HotelTamagotchi.Web.Controllers
                 t.Age++;
                 t.Level++;
                 t.LeaveRoom();
+                _tamagotchiRepository.SetChanged(t);
             }
         }
     }

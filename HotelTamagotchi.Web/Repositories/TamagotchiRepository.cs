@@ -35,7 +35,7 @@ namespace HotelTamagotchi.Web.Repositories
         public List<TamagotchiViewModel> GetAll()
         {
             List<TamagotchiViewModel> list = new List<TamagotchiViewModel>();
-            foreach (Tamagotchi t in _database.Tamagotchi.Include("HotelRoom").Include("User"))
+            foreach (Tamagotchi t in _database.Tamagotchi.Include("HotelRoom").Include("User").Where(t => t.Alive))
             {
                 list.Add(new TamagotchiViewModel(t));
             }
