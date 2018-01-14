@@ -35,14 +35,12 @@ namespace HotelTamagotchi.Web.Controllers
 
         public ActionResult Book()
         {
-            ITamagotchiRepository TamagotchiRepo = NinjectWebCommon.Kernel.Get<TamagotchiRepository>();
-            IHotelRoomRepository HotelRoomRepo = NinjectWebCommon.Kernel.Get<HotelRoomRepository>();
-            if (TamagotchiRepo.GetAllHomelessTamagotchi().Count == 0)
+            if (_tamagotchiRepository.GetAllHomelessTamagotchi().Count == 0)
             {
                 TempData["TamagotchiCount"] = "There are no tamagotchis to book! Remove tamagotchis from a hotelroom or start the night!";
                 return RedirectToAction("Index");
             }
-            if(HotelRoomRepo.GetAllAvailableHotelRooms().Count == 0)
+            if(_hotelRoomRepository.GetAllAvailableHotelRooms().Count == 0)
             {
                 TempData["HotelRoomCount"] = "There are no hotelrooms available to book! Remove tamagotchis from a hotelroom or start the night!";
                 return RedirectToAction("Index");
