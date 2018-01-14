@@ -51,11 +51,6 @@ namespace HotelTamagotchi.Web.ViewModels
       
         #endregion
 
-        public void AddTamagotchi(TamagotchiViewModel tamagotchi)
-        {
-            _model.Tamagotchi.Add(tamagotchi.ToModel());
-        }
-
         public void RemoveTamagotchi(TamagotchiViewModel tamagotchi)
         {
             _model.Tamagotchi.Remove(tamagotchi.ToModel());

@@ -95,6 +95,7 @@
     <Compile Include="Controllers\BookingControllerTest.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\HotelRoomControllerTest.cs" />
+    <Compile Include="Controllers\NightControllerTest.cs" />
     <Compile Include="Controllers\TamagotchiControllerTest.cs" />
     <Compile Include="Models\HotelRoomTest.cs" />
     <Compile Include="Models\TamagotchiTest.cs" />

@@ -31,7 +31,7 @@ namespace HotelTamagotchi.Web.Models
                 if (h.Id > highestId)
                     highestId = h.Id;
             }
-            item.Id = highestId;
+            item.Id = ++highestId;
             _data.Add(item);
             return item;
         }

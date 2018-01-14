@@ -22,11 +22,6 @@ namespace HotelTamagotchi.Test.Controllers
             TamagotchiViewModel t = new TamagotchiViewModel()
             {
                 Name = "Test",
-                Pennies = 100,
-                Age = 12,
-                Level = 100,
-                Health = 4,
-                Boredom = 12,
                 Alive = true
                 
             };

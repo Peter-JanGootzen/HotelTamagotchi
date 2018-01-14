@@ -39,13 +39,11 @@ namespace HotelTamagotchi.Web.Controllers
                                 t.Boredom += 10;
                             else
                                 t.Boredom = 100;
-                            t.LeaveRoom();
                             _tamagotchiRepository.SetChanged(t);
                             break;
                         case HotelRoomType.Gameroom:
                             t.Pennies -= 20;
                             t.Boredom = 0;
-                            t.LeaveRoom();
                             _tamagotchiRepository.SetChanged(t);
                             break;
                         case HotelRoomType.Workroom:
@@ -56,10 +54,11 @@ namespace HotelTamagotchi.Web.Controllers
                                 t.Boredom += 20;
                             else
                                 t.Boredom = 100;
-                            t.LeaveRoom();
                             _tamagotchiRepository.SetChanged(t);
                             break;
                         case HotelRoomType.Fightroom:
+                            break; // Gets handled at a later stage
+                        case HotelRoomType.Quidditch:
                             break; // Gets handled at a later stage
                     }
                 }
@@ -100,7 +99,6 @@ namespace HotelTamagotchi.Web.Controllers
                                 h.Tamagotchi[i].Alive = false;
                             }
                         }
-                        h.Tamagotchi[i].LeaveRoom();
                     }
                 }
                 else if (h.Type == HotelRoomType.Quidditch)
@@ -129,10 +127,19 @@ namespace HotelTamagotchi.Web.Controllers
                             t.Pennies += 150;
                             t.Level++;
                         }
-                        t.LeaveRoom();
                     }
                 }
                 _hotelRoomRepository.SetChanged(h);
+            }
+            foreach (TamagotchiViewModel t in _tamagotchiRepository.GetAll())
+            {
+                if (t.Boredom >= 70)
+                    t.Health -= 20;
+                if (t.Health == 0)
+                    t.Alive = false;
+                t.Age++;
+                t.Level++;
+                t.LeaveRoom();
             }
         }
     }
