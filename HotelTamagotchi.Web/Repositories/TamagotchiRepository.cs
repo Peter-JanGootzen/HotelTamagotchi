@@ -2,6 +2,7 @@
 using HotelTamagotchi.Web.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -34,7 +35,7 @@ namespace HotelTamagotchi.Web.Repositories
         public List<TamagotchiViewModel> GetAll()
         {
             List<TamagotchiViewModel> list = new List<TamagotchiViewModel>();
-            foreach (Tamagotchi t in _database.Tamagotchi)
+            foreach (Tamagotchi t in _database.Tamagotchi.Include("HotelRoom").Include("User"))
             {
                 list.Add(new TamagotchiViewModel(t));
             }
