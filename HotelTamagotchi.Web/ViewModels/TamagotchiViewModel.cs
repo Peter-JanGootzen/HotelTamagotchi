@@ -10,8 +10,6 @@ namespace HotelTamagotchi.Web.ViewModels
     public class TamagotchiViewModel : IValidatableObject
     {
         Tamagotchi _model;
-        HotelRoomViewModel _hotelRoomViewModel;
-        UserViewModel _userViewModel;
 
         public TamagotchiViewModel()
         {
@@ -28,8 +26,6 @@ namespace HotelTamagotchi.Web.ViewModels
         public TamagotchiViewModel(Tamagotchi tamagotchi)
         {
             _model = tamagotchi;
-            if (_model.HotelRoom != null)
-                _hotelRoomViewModel = new HotelRoomViewModel(_model.HotelRoom);
         }
 
         #region Properties
@@ -88,27 +84,31 @@ namespace HotelTamagotchi.Web.ViewModels
 
         public HotelRoomViewModel HotelRoom
         {
-            get => _hotelRoomViewModel;
+            get
+            {
+                if (_model.HotelRoom == null)
+                    return null;
+                else
+                    return new HotelRoomViewModel(_model.HotelRoom);
+            }
             set
             {
-                _hotelRoomViewModel = value;
-                if (value == null)
-                    _model.HotelRoom = null;
-                else
-                    _model.HotelRoom = value.ToModel();
+                _model.HotelRoom = value.ToModel();
             }
         }
 
         public UserViewModel User
         {
-            get => _userViewModel;
+            get
+            {
+                if (_model.User == null)
+                    return null;
+                else
+                    return new UserViewModel(_model.User);
+            }
             set
             {
-                _userViewModel = value;
-                if (value == null)
-                    _model.User = null;
-                else
-                    _model.User = value.ToModel();
+                _model.User = value.ToModel();
             }
         }
         #endregion

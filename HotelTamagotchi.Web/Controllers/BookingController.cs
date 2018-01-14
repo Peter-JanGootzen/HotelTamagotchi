@@ -26,7 +26,12 @@ namespace HotelTamagotchi.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if(HotelRoomRepo.GetAllAvailableHotelRooms().Count == 0)
+            if (Session["User"] == null)
+            {
+                TempData["NotLoggedIn"] = "Please login or register to continue!";
+                return RedirectToAction("Index", "Home");
+            }
+            if (HotelRoomRepo.GetAllAvailableHotelRooms().Count == 0)
             {
                 TempData["HotelRoomCount"] = "There are no hotelrooms available to book! Remove tamagotchis from a hotelroom or start the night!";
                 return RedirectToAction("Index", "Home");

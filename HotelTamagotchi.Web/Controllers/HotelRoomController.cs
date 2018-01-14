@@ -24,12 +24,22 @@ namespace HotelTamagotchi.Web.Controllers
         // GET: HotelRoom
         public ActionResult Index()
         {
+            if (Session["User"] == null)
+            {
+                TempData["NotLoggedIn"] = "Please login or register to continue!";
+                return RedirectToAction("Index", "Home");
+            }
             return View(HotelRoomRepo.GetAll());
         }
 
         // GET: HotelRoom/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["User"] == null)
+            {
+                TempData["NotLoggedIn"] = "Please login or register to continue!";
+                return RedirectToAction("Index", "Home");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
