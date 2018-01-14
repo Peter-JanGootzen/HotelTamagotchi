@@ -35,10 +35,11 @@ namespace HotelTamagotchi.Web.Controllers
 
         public ActionResult Book()
         {
-            if (_tamagotchiRepository.GetAllHomelessTamagotchi().Count == 0)
+        
+            if(Session["User"] == null)
             {
-                TempData["TamagotchiCount"] = "There are no tamagotchis to book! Remove tamagotchis from a hotelroom or start the night!";
-                return RedirectToAction("Index");
+                TempData["NotLoggedIn"] = "Please login or register to continue!";
+                return RedirectToAction("Index", "Home");
             }
             if(_hotelRoomRepository.GetAllAvailableHotelRooms().Count == 0)
             {
@@ -50,7 +51,13 @@ namespace HotelTamagotchi.Web.Controllers
 
         public ActionResult StartNight()
         {
+            if (Session["User"] == null)
+            {
+                TempData["NotLoggedIn"] = "Please login or register to continue!";
+                return RedirectToAction("Index", "Home");
+            }
             NightController nC = new NightController(_tamagotchiRepository, _hotelRoomRepository);
+            nC.StartNight();
             TempData["NightSuccess"] = "The night has been finished, go check in on your tamagotchi or book another room";
             return Redirect(".");
         }

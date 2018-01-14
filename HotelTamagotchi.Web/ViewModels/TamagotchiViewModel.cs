@@ -10,7 +10,6 @@ namespace HotelTamagotchi.Web.ViewModels
     public class TamagotchiViewModel : IValidatableObject
     {
         Tamagotchi _model;
-        HotelRoomViewModel _hotelRoomViewModel;
 
         public TamagotchiViewModel()
         {
@@ -27,11 +26,10 @@ namespace HotelTamagotchi.Web.ViewModels
         public TamagotchiViewModel(Tamagotchi tamagotchi)
         {
             _model = tamagotchi;
-            if (_model.HotelRoom != null)
-                _hotelRoomViewModel = new HotelRoomViewModel(_model.HotelRoom);
         }
 
         #region Properties
+        [Required]
         public String Name
         {
             get => _model.Name;
@@ -47,6 +45,11 @@ namespace HotelTamagotchi.Web.ViewModels
         {
             get => _model.HotelRoomId;
             set => _model.HotelRoomId = value;
+        }
+        public int UserId
+        {
+            get => _model.UserId;
+            set => _model.UserId = value;
         }
         public int Pennies
         {
@@ -81,14 +84,31 @@ namespace HotelTamagotchi.Web.ViewModels
 
         public HotelRoomViewModel HotelRoom
         {
-            get => _hotelRoomViewModel;
+            get
+            {
+                if (_model.HotelRoom == null)
+                    return null;
+                else
+                    return new HotelRoomViewModel(_model.HotelRoom);
+            }
             set
             {
-                _hotelRoomViewModel = value;
-                if (value == null)
-                    _model.HotelRoom = null;
+                _model.HotelRoom = value.ToModel();
+            }
+        }
+
+        public UserViewModel User
+        {
+            get
+            {
+                if (_model.User == null)
+                    return null;
                 else
-                    _model.HotelRoom = value.ToModel();
+                    return new UserViewModel(_model.User);
+            }
+            set
+            {
+                _model.User = value.ToModel();
             }
         }
         #endregion

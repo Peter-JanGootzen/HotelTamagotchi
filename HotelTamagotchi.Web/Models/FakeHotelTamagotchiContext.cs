@@ -12,11 +12,13 @@ namespace HotelTamagotchi.Web.Models
         bool disposed;
         IDbSet<HotelRoom> _hotelRoom;
         IDbSet<Tamagotchi> _tamagotchi;
+        IDbSet<User> _user;
 
         public FakeHotelTamagotchiContext()
         {
             _hotelRoom = new FakeDbSet<HotelRoom>();
             _tamagotchi = new FakeDbSet<Tamagotchi>();
+            //_user = new FakeDbSet<User>();
         }
         public IDbSet<HotelRoom> HotelRoom
         {
@@ -50,6 +52,24 @@ namespace HotelTamagotchi.Web.Models
                     throw new InvalidOperationException("The operation cannot be completed because the DbContext has been disposed.");
                 else
                     _tamagotchi = value;
+            }
+        }
+
+        public IDbSet<User> User
+        {
+            get
+            {
+                if (disposed == true)
+                    throw new InvalidOperationException("The operation cannot be completed because the DbContext has been disposed.");
+                else
+                    return _user;
+            }
+            set
+            {
+                if (disposed == true)
+                    throw new InvalidOperationException("The operation cannot be completed because the DbContext has been disposed.");
+                else
+                    _user = value;
             }
         }
 

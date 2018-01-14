@@ -1,4 +1,5 @@
-﻿using HotelTamagotchi.Web.Repositories;
+﻿using HotelTamagotchi.Web.Models;
+using HotelTamagotchi.Web.Repositories;
 using HotelTamagotchi.Web.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,12 @@ namespace HotelTamagotchi.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if(HotelRoomRepo.GetAllAvailableHotelRooms().Count == 0)
+            if (Session["User"] == null)
+            {
+                TempData["NotLoggedIn"] = "Please login or register to continue!";
+                return RedirectToAction("Index", "Home");
+            }
+            if (HotelRoomRepo.GetAllAvailableHotelRooms().Count == 0)
             {
                 TempData["HotelRoomCount"] = "There are no hotelrooms available to book! Remove tamagotchis from a hotelroom or start the night!";
                 return RedirectToAction("Index", "Home");
@@ -38,6 +44,11 @@ namespace HotelTamagotchi.Web.Controllers
             if (TempData["ViewData"] != null)
             {
                 ViewData = (ViewDataDictionary)TempData["ViewData"];
+            }
+            if (!Session["Role"].Equals(UserRole.Customer))
+            {
+                TempData["NotAuthorized"] = "You are not authorized to perform these actions!";
+                return RedirectToAction("Index", "Home");
             }
             if (id == null)
             {
@@ -53,6 +64,11 @@ namespace HotelTamagotchi.Web.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection formCollection, HotelRoomViewModel hotelroom)
         {
+            if (!Session["Role"].Equals(UserRole.Customer))
+            {
+                TempData["NotAuthorized"] = "You are not authorized to perform these actions!";
+                return RedirectToAction("Index", "Home");
+            }
             hotelroom = HotelRoomRepo.Find(hotelroom.Id);
             List<TamagotchiViewModel> addToHotel = new List<TamagotchiViewModel>();
             int i = 0;

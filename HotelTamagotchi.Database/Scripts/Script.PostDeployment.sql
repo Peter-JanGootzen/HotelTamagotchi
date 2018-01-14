@@ -9,5 +9,6 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+:r ./Seed/User.sql
 :r ./Seed/HotelRoom.sql
 :r ./Seed/Tamagotchi.sql
