@@ -61,27 +61,27 @@ namespace HotelTamagotchi.Test.Models
             TamagotchiViewModel t2 = new TamagotchiViewModel() { Age = 0, Name = null, Pennies = pennies, Level = level, Health = health, Boredom = boredom, Alive = alive };
 
             // Act
-            string NameNull = "Je moet een naam invullen!";
-            string NameLength = "Je naam mag maximaal 10 letters bevatten!";
-            string AgeCheck = "Je moet minimaal een leeftijd hebben van 0";
-            string PenniesCheck = "Je moet minimaal 0 of meer centjes hebben!";
-            string LevelCheck = "Je moet minimaal een level hebben van 0 of meer!";
-            string HealthCheck = "Je levens moet mininmaal tussen 0 en de 100 liggen";
-            string BoredomCheck = "Je verveling moet mininmaal tussen 0 en de 100 liggen";
+            string NameLength = "Your name can only be 10 letters long";
+            string NameNull = "You have to put in a name in the name field";
+            string AgeCheck = "You have to be atleast 0 days old";
+            string PenniesCheck = "You can not have a negative amount of pennies";
+            string LevelCheck = "You can not have a negative amount of levels";
+            string HealthCheck = "Your health value must be between 0 and 100";
+            string BoredomCheck = "Your boredom value must be between 0 and 100";
 
             var errors1 = t1.Validate(null);
             var errors2 = t2.Validate(null);
 
             //Assert
 
-            Assert.AreEqual(NameLength, errors1.Where(x => x.ErrorMessage.Equals("Je naam mag maximaal 10 letters bevatten!")).FirstOrDefault().ErrorMessage);
-            Assert.AreEqual(AgeCheck, errors1.Where(x => x.ErrorMessage.Equals("Je moet minimaal een leeftijd hebben van 0")).FirstOrDefault().ErrorMessage);
-            Assert.AreEqual(PenniesCheck, errors1.Where(x => x.ErrorMessage.Equals("Je moet minimaal 0 of meer centjes hebben!")).FirstOrDefault().ErrorMessage);
-            Assert.AreEqual(LevelCheck, errors1.Where(x => x.ErrorMessage.Equals("Je moet minimaal een level hebben van 0 of meer!")).FirstOrDefault().ErrorMessage);
-            Assert.AreEqual(HealthCheck, errors1.Where(x => x.ErrorMessage.Equals("Je levens moet mininmaal tussen 0 en de 100 liggen")).FirstOrDefault().ErrorMessage);
-            Assert.AreEqual(BoredomCheck, errors1.Where(x => x.ErrorMessage.Equals("Je verveling moet mininmaal tussen 0 en de 100 liggen")).FirstOrDefault().ErrorMessage);
+            Assert.AreEqual(NameLength, errors1.Where(x => x.ErrorMessage.Equals(NameLength)).FirstOrDefault().ErrorMessage);
+            Assert.AreEqual(AgeCheck, errors1.Where(x => x.ErrorMessage.Equals(AgeCheck)).FirstOrDefault().ErrorMessage);
+            Assert.AreEqual(PenniesCheck, errors1.Where(x => x.ErrorMessage.Equals(PenniesCheck)).FirstOrDefault().ErrorMessage);
+            Assert.AreEqual(LevelCheck, errors1.Where(x => x.ErrorMessage.Equals(LevelCheck)).FirstOrDefault().ErrorMessage);
+            Assert.AreEqual(HealthCheck, errors1.Where(x => x.ErrorMessage.Equals(HealthCheck)).FirstOrDefault().ErrorMessage);
+            Assert.AreEqual(BoredomCheck, errors1.Where(x => x.ErrorMessage.Equals(BoredomCheck)).FirstOrDefault().ErrorMessage);
 
-            Assert.AreEqual(NameNull, errors2.Where(x => x.ErrorMessage.Equals("Je moet een naam invullen!")).FirstOrDefault().ErrorMessage);
+            Assert.AreEqual(NameNull, errors2.Where(x => x.ErrorMessage.Equals(NameNull)).FirstOrDefault().ErrorMessage);
 
         }
 
