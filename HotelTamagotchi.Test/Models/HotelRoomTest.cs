@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using HotelTamagotchi.Web.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
@@ -8,10 +8,10 @@ using HotelTamagotchi.Web.ViewModels;
 
 namespace HotelTamagotchi.Test.Models
 {
-    [TestClass]
+    [TestFixture]
     public class HotelRoomTest
     {
-        [TestMethod]
+        [Test]
         public void Hotelroom_properties()
         {
             //arrange
@@ -22,7 +22,7 @@ namespace HotelTamagotchi.Test.Models
             Assert.AreEqual(HotelRoomType.Gameroom, h.Type);
         }
 
-        [TestMethod]
+        [Test]
         public void Hotelroom_valid_validation()
         {
             //arrange
@@ -33,7 +33,7 @@ namespace HotelTamagotchi.Test.Models
             Assert.AreEqual(0, errors.Count());
         }
 
-        [TestMethod]
+        [Test]
         public void Hotelroom_invalid_validation()
         {
             //arrange

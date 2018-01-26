@@ -1,18 +1,19 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HotelTamagotchi.Web.Controllers;
+using NUnit.Framework;
 using HotelTamagotchi.Web.Models;
 using HotelTamagotchi.Web.Repositories;
 using System.Web.Mvc;
 using System.Net;
 using HotelTamagotchi.Web.ViewModels;
+using Moq;
 
 namespace HotelHotelRoom.Test.Controllers
 {
-    [TestClass]
+    [TestFixture]
     public class HotelRoomControllerTest
     {
-        [TestMethod]
+        [Test]
         public void Test_Create()
         {
             HotelRoomViewModel t = new HotelRoomViewModel()
@@ -24,6 +25,10 @@ namespace HotelHotelRoom.Test.Controllers
             IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
             IHotelRoomRepository tr = new HotelRoomRepository(c);
             HotelRoomController tc = new HotelRoomController(tr);
+            var ccMock = new Mock<ControllerContext>();
+            ccMock.SetupGet(x => x.HttpContext.Session["User"]).Returns("testUser");
+            ccMock.SetupGet(x => x.HttpContext.Session["Role"]).Returns(UserRole.Staff);
+            tc.ControllerContext = ccMock.Object;
 
             tc.Create(t);
 
@@ -31,7 +36,7 @@ namespace HotelHotelRoom.Test.Controllers
             tr.Remove(t);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Edit()
         {
             HotelRoomViewModel t = new HotelRoomViewModel()
@@ -40,8 +45,12 @@ namespace HotelHotelRoom.Test.Controllers
                 Type = HotelRoomType.Workroom
             };
             IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
-            IHotelRoomRepository tr = new HotelRoomRepository(c); ;
+            IHotelRoomRepository tr = new HotelRoomRepository(c);
             HotelRoomController tc = new HotelRoomController(tr);
+            var ccMock = new Mock<ControllerContext>();
+            ccMock.SetupGet(x => x.HttpContext.Session["User"]).Returns("testUser");
+            ccMock.SetupGet(x => x.HttpContext.Session["Role"]).Returns(UserRole.Staff);
+            tc.ControllerContext = ccMock.Object;
 
             tc.Create(t);
             t.Size = 5;
@@ -50,12 +59,16 @@ namespace HotelHotelRoom.Test.Controllers
             tr.Remove(t);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Errors()
         {
             IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
             IHotelRoomRepository tr = new HotelRoomRepository(c);
             HotelRoomController tc = new HotelRoomController(tr);
+            var ccMock = new Mock<ControllerContext>();
+            ccMock.SetupGet(x => x.HttpContext.Session["User"]).Returns("testUser");
+            ccMock.SetupGet(x => x.HttpContext.Session["Role"]).Returns(UserRole.Staff);
+            tc.ControllerContext = ccMock.Object;
 
             var r = tc.Delete(null);
             var r2 = tc.Delete(0);
@@ -63,12 +76,12 @@ namespace HotelHotelRoom.Test.Controllers
             //Untestable because null is ambigious between a int? and an object
             //var r3 = tc.Edit(null);
 
-            Assert.IsInstanceOfType(r, typeof(HttpStatusCodeResult));
-            Assert.IsInstanceOfType(r2, typeof(HttpNotFoundResult));
-            Assert.IsInstanceOfType(r3, typeof(HttpNotFoundResult));
+            Assert.That(r, Is.TypeOf<HttpStatusCodeResult>());
+            Assert.That(r2, Is.TypeOf<HttpNotFoundResult>());
+            Assert.That(r3, Is.TypeOf<HttpNotFoundResult>());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_DeleteConfirmed()
         {
             HotelRoomViewModel t = new HotelRoomViewModel()
@@ -79,6 +92,10 @@ namespace HotelHotelRoom.Test.Controllers
             IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
             IHotelRoomRepository tr = new HotelRoomRepository(c);
             HotelRoomController tc = new HotelRoomController(tr);
+            var ccMock = new Mock<ControllerContext>();
+            ccMock.SetupGet(x => x.HttpContext.Session["User"]).Returns("testUser");
+            ccMock.SetupGet(x => x.HttpContext.Session["Role"]).Returns(UserRole.Staff);
+            tc.ControllerContext = ccMock.Object;
 
             tc.Create(t);
             tc.DeleteConfirmed(t.Id);
@@ -86,12 +103,16 @@ namespace HotelHotelRoom.Test.Controllers
             Assert.IsFalse(tr.GetAll().Contains(t));
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Dispose()
         {
             IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
             IHotelRoomRepository tr = new HotelRoomRepository(c);
             HotelRoomController tc = new HotelRoomController(tr);
+            var ccMock = new Mock<ControllerContext>();
+            ccMock.SetupGet(x => x.HttpContext.Session["User"]).Returns("testUser");
+            ccMock.SetupGet(x => x.HttpContext.Session["Role"]).Returns(UserRole.Staff);
+            tc.ControllerContext = ccMock.Object;
 
             tc.Dispose();
             InvalidOperationException e = new InvalidOperationException("Wrong exception");

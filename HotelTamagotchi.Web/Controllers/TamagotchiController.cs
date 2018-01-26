@@ -106,7 +106,7 @@ namespace HotelTamagotchi.Web.Controllers
                 TempData["NotLoggedIn"] = "Please login or register to continue!";
                 return RedirectToAction("Index", "Home");
             }
-            if (!Session["Role"].Equals(UserRole.Customer) || !Session["User"].Equals(TamagotchiRepo.Find(id).User.Username))
+            if (!Session["Role"].Equals(UserRole.Customer))
             {
                 TempData["NotAuthorized"] = "You are not authorized to perform these actions!";
                 return RedirectToAction("Index", "Tamagotchi");
@@ -156,7 +156,7 @@ namespace HotelTamagotchi.Web.Controllers
                 TempData["NotLoggedIn"] = "Please login or register to continue!";
                 return RedirectToAction("Index", "Home");
             }
-            if (!Session["Role"].Equals(UserRole.Customer) || !Session["User"].Equals(TamagotchiRepo.Find(id).User.Username))
+            if (!Session["Role"].Equals(UserRole.Customer))
             {
                 TempData["NotAuthorized"] = "You are not authorized to perform these actions!";
                 return RedirectToAction("Index", "Home");
@@ -183,7 +183,7 @@ namespace HotelTamagotchi.Web.Controllers
                 TempData["NotLoggedIn"] = "Please login or register to continue!";
                 return RedirectToAction("Index", "Home");
             }
-            if (!Session["Role"].Equals(UserRole.Customer) || !Session["User"].Equals(TamagotchiRepo.Find(id).User.Username))
+            if (!Session["Role"].Equals(UserRole.Customer))
             {
                 TempData["NotAuthorized"] = "You are not authorized to perform these actions!";
                 return RedirectToAction("Index", "Home");

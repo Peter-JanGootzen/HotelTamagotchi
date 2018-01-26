@@ -1,7 +1,7 @@
 ﻿using HotelTamagotchi.Web.Controllers;
 using HotelTamagotchi.Web.Models;
 using HotelTamagotchi.Web.ViewModels;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace HotelTamagotchi.Test.Models
 {
-    [TestClass]
+    [TestFixture]
     public class TamagotchiTest
     {
         int age = 0;
@@ -22,7 +22,7 @@ namespace HotelTamagotchi.Test.Models
         byte boredom = 100;
         bool alive = false;
 
-        [TestMethod]
+        [Test]
         public void Tamagotchi_properties()
         {
             // Arrange
@@ -41,7 +41,7 @@ namespace HotelTamagotchi.Test.Models
             Assert.AreEqual(alive, t.Alive);
 
         }
-        [TestMethod]
+        [Test]
         public void Tamagotchi_valid_validation()
         {
             // Arrange
@@ -53,7 +53,7 @@ namespace HotelTamagotchi.Test.Models
 
         }
 
-        [TestMethod]
+        [Test]
         public void Tamagotchi_invalid_validation()
         {
             // Arrange

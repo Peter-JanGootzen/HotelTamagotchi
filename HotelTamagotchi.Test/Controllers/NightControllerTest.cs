@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using HotelTamagotchi.Web.Models;
 using HotelTamagotchi.Web.Repositories;
 using HotelTamagotchi.Web.Controllers;
@@ -9,10 +9,10 @@ using HotelTamagotchi.Web.ViewModels;
 
 namespace HotelTamagotchi.Test.Controllers
 {
-    [TestClass]
+    [TestFixture]
     public class NightControllerTest
     {
-        [TestMethod]
+        [Test]
         public void StartNight_Gameroom()
         {
             IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
@@ -43,7 +43,7 @@ namespace HotelTamagotchi.Test.Controllers
             Assert.IsTrue(tR.Find(t.Id).Pennies == 80);
         }
 
-        [TestMethod]
+        [Test]
         public void StartNight_Restroom()
         {
             IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
@@ -91,7 +91,7 @@ namespace HotelTamagotchi.Test.Controllers
             Assert.IsTrue(tR.Find(t2.Id).Health == 80);
         }
 
-        [TestMethod]
+        [Test]
         public void StartNight_Workroom()
         {
             IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
@@ -134,7 +134,7 @@ namespace HotelTamagotchi.Test.Controllers
             Assert.IsTrue(tR.Find(t2.Id).Boredom == 100);
         }
 
-        [TestMethod]
+        [Test]
         public void StartNight_Homeless()
         {
             IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
@@ -165,7 +165,5 @@ namespace HotelTamagotchi.Test.Controllers
             Assert.IsTrue(tR.Find(t2.Id).Health == 0);
             Assert.IsTrue(tR.Find(t2.Id).Alive == false);
         }
-
-        
     }
 }

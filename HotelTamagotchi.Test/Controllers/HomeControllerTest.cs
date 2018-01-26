@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using HotelTamagotchi.Web;
 using HotelTamagotchi.Web.Controllers;
 using HotelTamagotchi.Web.Repositories;
@@ -11,10 +11,10 @@ using HotelTamagotchi.Web.Models;
 
 namespace HotelTamagotchi.Test.Controllers
 {
-    [TestClass]
+    [TestFixture]
     public class HomeControllerTest
     {
-        [TestMethod]
+        [Test]
         public void Index()
         {
             IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
@@ -31,7 +31,7 @@ namespace HotelTamagotchi.Test.Controllers
             Assert.IsNotNull(result);
         }
 
-        [TestMethod]
+        [Test]
         public void About()
         {
             IHotelTamagotchiContext c = new FakeHotelTamagotchiContext();
